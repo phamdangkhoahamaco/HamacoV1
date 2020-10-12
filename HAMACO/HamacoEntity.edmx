@@ -1,0 +1,2233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HamacoV3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="ParentID" Type="uniqueidentifier" />
+          <Property Name="Grade" Type="int" Nullable="false" />
+          <Property Name="IsParent" Type="bit" Nullable="false" />
+          <Property Name="AccountCategoryID" Type="nvarchar" MaxLength="20" />
+          <Property Name="AccountCategoryKind" Type="int" />
+          <Property Name="DetailByAccountingObject" Type="bit" Nullable="false" />
+          <Property Name="DetailByInventoryItem" Type="bit" Nullable="false" />
+          <Property Name="DetailByJob" Type="bit" Nullable="false" />
+          <Property Name="DetailByContract" Type="bit" Nullable="false" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+          <Property Name="DetailByForeignCurrency" Type="bit" Nullable="false" />
+          <Property Name="AccountingObjectType" Type="int" />
+          <Property Name="DetailByBankAccount" Type="bit" />
+          <Property Name="AccountNameEnglish" Type="nvarchar" MaxLength="255" />
+          <Property Name="Exits" Type="bit" />
+          <Property Name="GroupCost" Type="int" />
+        </EntityType>
+        <EntityType Name="AccountCategory">
+          <Key>
+            <PropertyRef Name="AccountCategoryID" />
+          </Key>
+          <Property Name="AccountCategoryID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AccountCategoryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AccountCategoryKind" Type="int" Nullable="false" />
+          <Property Name="DetailByAccountingObject" Type="bit" Nullable="false" />
+          <Property Name="DetailByInventoryItem" Type="bit" Nullable="false" />
+          <Property Name="DetailByJob" Type="bit" Nullable="false" />
+          <Property Name="DetailByContract" Type="bit" Nullable="false" />
+          <Property Name="AccountingObjectType" Type="int" />
+          <Property Name="DetailByBankAccount" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountCustomerPeriod">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="FiscalYear" />
+            <PropertyRef Name="FiscalPeriod" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="AccountingObjectCode" />
+            <PropertyRef Name="AccountingObjectName" />
+          </Key>
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="FiscalYear" Type="int" Nullable="false" />
+          <Property Name="FiscalPeriod" Type="int" Nullable="false" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AccountingObjectCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="AccountingObjectName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NoDK" Type="money" Nullable="false" />
+          <Property Name="CoDK" Type="money" Nullable="false" />
+          <Property Name="PSNo" Type="money" Nullable="false" />
+          <Property Name="PSCo" Type="money" Nullable="false" />
+          <Property Name="LKNo" Type="money" Nullable="false" />
+          <Property Name="LKCo" Type="money" Nullable="false" />
+          <Property Name="NoCK" Type="money" Nullable="false" />
+          <Property Name="CoCK" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountCustomerStockPeriod">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="FiscalYear" />
+            <PropertyRef Name="FiscalPeriod" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="StockCode" />
+            <PropertyRef Name="AccountingObjectCode" />
+            <PropertyRef Name="AccountingObjectName" />
+          </Key>
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="FiscalYear" Type="int" Nullable="false" />
+          <Property Name="FiscalPeriod" Type="int" Nullable="false" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AccountingObjectCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="AccountingObjectName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NoDK" Type="money" Nullable="false" />
+          <Property Name="CoDK" Type="money" Nullable="false" />
+          <Property Name="PSNo" Type="money" Nullable="false" />
+          <Property Name="PSCo" Type="money" Nullable="false" />
+          <Property Name="LKNo" Type="money" Nullable="false" />
+          <Property Name="LKCo" Type="money" Nullable="false" />
+          <Property Name="NoCK" Type="money" Nullable="false" />
+          <Property Name="CoCK" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountingObject">
+          <Key>
+            <PropertyRef Name="AccountingObjectID" />
+          </Key>
+          <Property Name="AccountingObjectID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountingObjectCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="AccountingObjectName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AccountingObjectCategory" Type="nvarchar" MaxLength="4000" />
+          <Property Name="BranchID" Type="uniqueidentifier" />
+          <Property Name="EmployeeBirthday" Type="datetime" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="60" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="20" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="20" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Website" Type="nvarchar" MaxLength="100" />
+          <Property Name="BankAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CompanyTaxCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContactTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContactSex" Type="int" />
+          <Property Name="ContactMobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="ContactEmail" Type="nvarchar" MaxLength="60" />
+          <Property Name="ContactOfficeTel" Type="nvarchar" MaxLength="20" />
+          <Property Name="ContactHomeTel" Type="nvarchar" MaxLength="20" />
+          <Property Name="ContactAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsEmployee" Type="bit" Nullable="false" />
+          <Property Name="IsPersonal" Type="bit" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="IssueDate" Type="datetime" />
+          <Property Name="IssueBy" Type="nvarchar" MaxLength="120" />
+          <Property Name="DepartmentID" Type="uniqueidentifier" />
+          <Property Name="SaleCustomerGroupID" Type="uniqueidentifier" />
+          <Property Name="Insured" Type="bit" />
+          <Property Name="LabourUnionFee" Type="bit" />
+          <Property Name="FamilyDeductionAmount" Type="money" />
+          <Property Name="Inactive" Type="bit" />
+          <Property Name="MaximizeDebtAmount" Type="money" />
+          <Property Name="DueTime" Type="int" />
+          <Property Name="SalaryScaleID" Type="decimal" Precision="22" Scale="8" />
+          <Property Name="IsVendor" Type="bit" />
+          <Property Name="IsCustomer" Type="bit" />
+          <Property Name="Province" Type="nvarchar" MaxLength="100" />
+          <Property Name="District" Type="nvarchar" MaxLength="100" />
+          <Property Name="Village" Type="nvarchar" MaxLength="100" />
+          <Property Name="AccountingObjectGroupID" Type="uniqueidentifier" />
+          <Property Name="PaymentTermID" Type="uniqueidentifier" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="AccountPeriod">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="FiscalYear" />
+            <PropertyRef Name="FiscalPeriod" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="AccountName" />
+          </Key>
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="FiscalYear" Type="int" Nullable="false" />
+          <Property Name="FiscalPeriod" Type="int" Nullable="false" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NoDK" Type="money" Nullable="false" />
+          <Property Name="CoDK" Type="money" Nullable="false" />
+          <Property Name="PSNo" Type="money" Nullable="false" />
+          <Property Name="PSCo" Type="money" Nullable="false" />
+          <Property Name="LKNo" Type="money" Nullable="false" />
+          <Property Name="LKCo" Type="money" Nullable="false" />
+          <Property Name="NoCK" Type="money" Nullable="false" />
+          <Property Name="CoCK" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BaoCaoBangCanDoiKeToan">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="int" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="ChiTieu" Type="nvarchar" MaxLength="255" />
+          <Property Name="MaSo" Type="varchar" MaxLength="4" />
+          <Property Name="ThuyetMinh" Type="varchar" MaxLength="4" />
+          <Property Name="Quy1" Type="money" />
+          <Property Name="Quy2" Type="money" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="int" />
+        </EntityType>
+        <EntityType Name="BaoCaoBangCanDoiKeToan_Period">
+          <Key>
+            <PropertyRef Name="STT" />
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="STT" Type="int" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="ChiTieu" Type="nvarchar" MaxLength="255" />
+          <Property Name="MaSo" Type="varchar" MaxLength="4" />
+          <Property Name="ThuyetMinh" Type="varchar" MaxLength="4" />
+          <Property Name="Quy1" Type="money" />
+          <Property Name="Quy2" Type="money" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BaoCaoBangCanDoiTaiKhoan">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NoDK" Type="money" />
+          <Property Name="CoDK" Type="money" />
+          <Property Name="PSNo" Type="money" />
+          <Property Name="PSCo" Type="money" />
+          <Property Name="LKNo" Type="money" />
+          <Property Name="LKCo" Type="money" />
+          <Property Name="NoCK" Type="money" />
+          <Property Name="CoCK" Type="money" />
+        </EntityType>
+        <EntityType Name="BaoCaoCongNoQuaHan">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="ngaychungtu" />
+            <PropertyRef Name="StockID" />
+            <PropertyRef Name="AccountingObjectID" />
+          </Key>
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ngaychungtu" Type="datetime" Nullable="false" />
+          <Property Name="StockID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountingObjectID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AccountingObjectCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="AccountingObjectName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="HanMuc" Type="money" />
+          <Property Name="ToiDa" Type="money" />
+          <Property Name="No" Type="money" />
+          <Property Name="QuaHan" Type="money" />
+          <Property Name="Tren30Ngay" Type="money" />
+          <Property Name="Tren60Ngay" Type="money" />
+          <Property Name="Tren90Ngay" Type="money" />
+          <Property Name="Tren6Thang" Type="money" />
+          <Property Name="VuotHanMuc" Type="money" />
+          <Property Name="HopDong" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="BaoCaoKetQuaHoatDongKinhDoanh">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="int" Nullable="false" />
+          <Property Name="ChiTieu" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaSo" Type="varchar" MaxLength="2" />
+          <Property Name="ThuyetMinh" Type="varchar" MaxLength="4" />
+          <Property Name="Quy1" Type="money" />
+          <Property Name="Quy2" Type="money" />
+          <Property Name="LuyKe" Type="money" />
+        </EntityType>
+        <EntityType Name="BaoCaoLuuChuyenTienTe">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="int" Nullable="false" />
+          <Property Name="ChiTieu" Type="nvarchar" MaxLength="255" />
+          <Property Name="MaSo" Type="varchar" MaxLength="2" />
+          <Property Name="Quy1" Type="money" />
+        </EntityType>
+        <EntityType Name="BaoCaoTinhHinhThucHienNghiaVuNN">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="int" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="ChiTieu" Type="nvarchar" MaxLength="255" />
+          <Property Name="MaSo" Type="varchar" MaxLength="4" />
+          <Property Name="NoDK" Type="money" />
+          <Property Name="NoPS" Type="money" />
+          <Property Name="CoPS" Type="money" />
+          <Property Name="NoLK" Type="money" />
+          <Property Name="CoLK" Type="money" />
+          <Property Name="NoCK" Type="money" />
+        </EntityType>
+        <EntityType Name="BaoCaoTonKho">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="FiscalYear" />
+            <PropertyRef Name="FiscalPeriod" />
+            <PropertyRef Name="InventoryItemCode" />
+            <PropertyRef Name="InventoryItemName" />
+            <PropertyRef Name="Unit" />
+            <PropertyRef Name="UnitPrice" />
+            <PropertyRef Name="StockCode" />
+          </Key>
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="FiscalYear" Type="int" Nullable="false" />
+          <Property Name="FiscalPeriod" Type="int" Nullable="false" />
+          <Property Name="InventoryItemCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="InventoryItemName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UnitPrice" Type="money" Nullable="false" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="QuantityDK" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AmountDK" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityNTK" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AmountNTK" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityXTK" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AmountXTK" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityCK" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AmountCK" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityNTK2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AmountNTK2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityXTK2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AmountXTK2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityCK2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AmountCK2" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="BranchCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="BranchName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsDependent" Type="bit" Nullable="false" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+          <Property Name="IsSystem" Type="bit" />
+          <Property Name="IsParent" Type="bit" />
+          <Property Name="Parent" Type="uniqueidentifier" />
+          <Property Name="Grade" Type="int" />
+          <Property Name="StockBranch" Type="uniqueidentifier" />
+          <Property Name="Province" Type="nvarchar" MaxLength="20" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="TDV" Type="nvarchar" MaxLength="255" />
+          <Property Name="TK" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Center">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Job" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyTaxCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CEO" Type="nvarchar" MaxLength="50" />
+          <Property Name="DGM" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChiefAccountant" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cashier" Type="nvarchar" MaxLength="50" />
+          <Property Name="Version" Type="nvarchar" MaxLength="10" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Province" Type="nvarchar" MaxLength="255" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="255" />
+          <Property Name="Dongia" Type="money" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="TaxCode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DANHMUC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="STT" Type="int" />
+          <Property Name="DanhMuc" Type="nvarchar" MaxLength="255" />
+          <Property Name="DebitAccount" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreditAccount" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Phieu" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Distrist">
+          <Key>
+            <PropertyRef Name="DistristID" />
+          </Key>
+          <Property Name="DistristID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DistristCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="DistristName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProvinceID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FIDocument">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="FIDoc" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="FIHeader" Type="nvarchar" MaxLength="255" />
+          <Property Name="DocType" Type="char" MaxLength="4" />
+          <Property Name="MMDoc" Type="char" MaxLength="14" />
+          <Property Name="RefDate" Type="datetime" Nullable="false" />
+          <Property Name="PostedDate" Type="datetime" Nullable="false" />
+          <Property Name="RefNo" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="AccountingObjectCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="AccountingObjectName" Type="nvarchar" MaxLength="255" />
+          <Property Name="AccountingObjectAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Posted" Type="int" />
+          <Property Name="CompanyTaxCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="255" />
+          <Property Name="UserName2" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalAmount" Type="money" />
+          <Property Name="StockCode1" Type="nvarchar" MaxLength="20" />
+          <Property Name="StockCode2" Type="nvarchar" MaxLength="20" />
+          <Property Name="TaxCode" Type="int" />
+        </EntityType>
+        <EntityType Name="FIDocumentDetail">
+          <Key>
+            <PropertyRef Name="RefDetailID" />
+          </Key>
+          <Property Name="RefDetailID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="FIDoc" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="DebitAccount" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreditAccount" Type="nvarchar" MaxLength="20" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="AccountingObjectCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="AccountingObjectName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ItemNote" Type="nvarchar" MaxLength="255" />
+          <Property Name="Posted" Type="int" />
+          <Property Name="RefDate" Type="datetime" />
+          <Property Name="FIHeader" Type="nvarchar" MaxLength="255" />
+          <Property Name="DocType" Type="char" MaxLength="4" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="InventoryItem">
+          <Key>
+            <PropertyRef Name="InventoryItemID" />
+          </Key>
+          <Property Name="InventoryItemID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="InventoryCategoryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InventoryItemCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="BarCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="InventoryItemName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="GuarantyPeriod" Type="nvarchar" MaxLength="255" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="20" />
+          <Property Name="ConvertUnit" Type="nvarchar" MaxLength="20" />
+          <Property Name="ConvertRate" Type="decimal" Precision="22" Scale="8" />
+          <Property Name="UnitPrice" Type="decimal" Precision="22" Scale="8" />
+          <Property Name="SalePrice" Type="decimal" Precision="22" Scale="8" />
+          <Property Name="DefaultStockID" Type="uniqueidentifier" />
+          <Property Name="InventoryAccount" Type="nvarchar" MaxLength="20" />
+          <Property Name="COGSAccount" Type="nvarchar" MaxLength="20" />
+          <Property Name="SaleAccount" Type="nvarchar" MaxLength="20" />
+          <Property Name="CostMethod" Type="int" />
+          <Property Name="MinimumStock" Type="decimal" Precision="22" Scale="8" />
+          <Property Name="AccountingObjectID" Type="uniqueidentifier" />
+          <Property Name="TaxRate" Type="decimal" Precision="22" Scale="8" />
+          <Property Name="IsTool" Type="bit" />
+          <Property Name="InventoryItemType" Type="int" />
+          <Property Name="IsSystem" Type="bit" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+          <Property Name="SalePrice1" Type="decimal" Precision="22" Scale="8" />
+          <Property Name="SalePrice2" Type="decimal" Precision="22" Scale="8" />
+          <Property Name="SaleDescription" Type="nvarchar" MaxLength="255" />
+          <Property Name="PurchaseDescription" Type="nvarchar" MaxLength="255" />
+          <Property Name="ItemSource" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsToolAndInventoryItem" Type="bit" />
+          <Property Name="InventoryCategorySpecialTaxID" Type="uniqueidentifier" />
+          <Property Name="PrintMetarial" Type="bit" />
+          <Property Name="Parent" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="InventoryItemCategory">
+          <Key>
+            <PropertyRef Name="InventoryCategoryID" />
+          </Key>
+          <Property Name="InventoryCategoryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ParentID" Type="uniqueidentifier" />
+          <Property Name="MISACodeID" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsParent" Type="bit" />
+          <Property Name="Grade" Type="int" />
+          <Property Name="InventoryCategoryCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="InventoryCategoryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsTool" Type="bit" />
+          <Property Name="IsSystem" Type="bit" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MMDocument">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MMDoc" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="StockCode1" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="StockCode2" Type="nvarchar" MaxLength="20" />
+          <Property Name="RefType" Type="int" Nullable="false" />
+          <Property Name="PostedDate" Type="datetime" Nullable="false" />
+          <Property Name="RefDate" Type="datetime" Nullable="false" />
+          <Property Name="RefNo" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="MMHeader" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AccountingObjectCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="AccountingObjectName" Type="nvarchar" MaxLength="255" />
+          <Property Name="AccountingObjectAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="CompanyTaxCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Posted" Type="int" Nullable="false" />
+          <Property Name="UserName2" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="INOut" Type="int" Nullable="false" />
+          <Property Name="Factory" Type="int" />
+          <Property Name="Taixe" Type="nvarchar" MaxLength="50" />
+          <Property Name="CMND" Type="varchar" MaxLength="20" />
+          <Property Name="Dienthoai" Type="varchar" MaxLength="20" />
+          <Property Name="TotalAmount" Type="money" />
+          <Property Name="TaxCode" Type="int" />
+        </EntityType>
+        <EntityType Name="MMDocumentDetail">
+          <Key>
+            <PropertyRef Name="RefDetailID" />
+          </Key>
+          <Property Name="RefDetailID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MMDoc" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" />
+          <Property Name="InventoryItemCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="InventoryItemName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="20" />
+          <Property Name="Quantity" Type="decimal" Precision="22" Scale="8" />
+          <Property Name="QuantityConvert" Type="decimal" Precision="22" Scale="8" />
+          <Property Name="UnitPrice" Type="money" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="QuantityCK" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityCK2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Posted" Type="int" />
+          <Property Name="RefType" Type="int" />
+          <Property Name="RefDate" Type="datetime" />
+          <Property Name="MMHeader" Type="nvarchar" MaxLength="255" />
+          <Property Name="INOut" Type="int" />
+        </EntityType>
+        <EntityType Name="MSC_User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="PasswordEncryption" Type="nchar" MaxLength="10" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsBranchManager" Type="bit" />
+          <Property Name="BranchID" Type="uniqueidentifier" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="Website" Type="nvarchar" MaxLength="255" />
+          <Property Name="WorkPhone" Type="nchar" MaxLength="20" />
+          <Property Name="HomePhone" Type="nchar" MaxLength="20" />
+          <Property Name="MobilePhone" Type="nchar" MaxLength="20" />
+          <Property Name="Fax" Type="nchar" MaxLength="20" />
+          <Property Name="WorkAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="HomeAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+          <Property Name="IsOnline" Type="bit" />
+          <Property Name="IsSystem" Type="bit" Nullable="false" />
+          <Property Name="AuthenticationType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="ProvinceID" />
+          </Key>
+          <Property Name="ProvinceID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProvinceCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="ProvinceName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleCode" />
+          </Key>
+          <Property Name="RoleCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockID" />
+          </Key>
+          <Property Name="CompanyCode" Type="char" MaxLength="4" />
+          <Property Name="StockID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="StockName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="BranchID" Type="uniqueidentifier" />
+          <Property Name="DefaultAccountNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+          <Property Name="LPG" Type="bit" />
+          <Property Name="Parent" Type="uniqueidentifier" />
+          <Property Name="Province" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+          <Property Name="TDV" Type="nvarchar" MaxLength="255" />
+          <Property Name="TK" Type="nvarchar" MaxLength="255" />
+          <Property Name="LV" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HamacoV3.dbo.TableImport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TableImport">
+          <Key>
+            <PropertyRef Name="TableName" />
+          </Key>
+          <Property Name="TableName" Type="char" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionFav">
+          <Key>
+            <PropertyRef Name="TransactionCode" />
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="TransactionCode" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="TransactionCode" />
+          </Key>
+          <Property Name="TransactionCode" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TransactionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FormName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SortNo" Type="int" />
+          <Property Name="IsParent" Type="int" />
+          <Property Name="ParentFolder" Type="nvarchar" MaxLength="100" />
+          <Property Name="RoleCode" Type="varchar" MaxLength="20" />
+          <Property Name="IsDisplay" Type="int" />
+          <Property Name="IsDynamic" Type="int" />
+          <Property Name="ProcedureName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Transactions_DynamicReport">
+          <Key>
+            <PropertyRef Name="TransactionCode" />
+            <PropertyRef Name="FieldName" />
+            <PropertyRef Name="TypeName" />
+            <PropertyRef Name="IsInput" />
+          </Key>
+          <Property Name="TransactionCode" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="FieldName" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="FieldNameVN" Type="nvarchar" MaxLength="100" />
+          <Property Name="TypeName" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="IsInput" Type="int" Nullable="false" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="IsSum" Type="int" />
+        </EntityType>
+        <EntityType Name="UserJoinRole">
+          <Key>
+            <PropertyRef Name="RoleCode" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="RoleCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyCode" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserJoinStock">
+          <Key>
+            <PropertyRef Name="StockCode" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="StockCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyCode" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserJoinStock_Approve">
+          <Key>
+            <PropertyRef Name="StockCode" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="StockCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyCode" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AccountingObject_AccountingObject">
+          <End Role="AccountingObject" Type="Self.AccountingObject" Multiplicity="1" />
+          <End Role="AccountingObject1" Type="Self.AccountingObject" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingObject">
+              <PropertyRef Name="AccountingObjectID" />
+            </Principal>
+            <Dependent Role="AccountingObject1">
+              <PropertyRef Name="AccountingObjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryItem_InventoryItemCategory">
+          <End Role="InventoryItemCategory" Type="Self.InventoryItemCategory" Multiplicity="1" />
+          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryItemCategory">
+              <PropertyRef Name="InventoryCategoryID" />
+            </Principal>
+            <Dependent Role="InventoryItem">
+              <PropertyRef Name="InventoryCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryItem_Stock_Default">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="0..1" />
+          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="StockID" />
+            </Principal>
+            <Dependent Role="InventoryItem">
+              <PropertyRef Name="DefaultStockID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HamacoV3ModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountCategory" EntityType="Self.AccountCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountCustomerPeriod" EntityType="Self.AccountCustomerPeriod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountCustomerStockPeriod" EntityType="Self.AccountCustomerStockPeriod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountingObject" EntityType="Self.AccountingObject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountPeriod" EntityType="Self.AccountPeriod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaoCaoBangCanDoiKeToan" EntityType="Self.BaoCaoBangCanDoiKeToan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaoCaoBangCanDoiKeToan_Period" EntityType="Self.BaoCaoBangCanDoiKeToan_Period" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaoCaoBangCanDoiTaiKhoan" EntityType="Self.BaoCaoBangCanDoiTaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaoCaoCongNoQuaHan" EntityType="Self.BaoCaoCongNoQuaHan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaoCaoKetQuaHoatDongKinhDoanh" EntityType="Self.BaoCaoKetQuaHoatDongKinhDoanh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaoCaoLuuChuyenTienTe" EntityType="Self.BaoCaoLuuChuyenTienTe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaoCaoTinhHinhThucHienNghiaVuNN" EntityType="Self.BaoCaoTinhHinhThucHienNghiaVuNN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaoCaoTonKho" EntityType="Self.BaoCaoTonKho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Center" EntityType="Self.Center" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DANHMUC" EntityType="Self.DANHMUC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Distrist" EntityType="Self.Distrist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FIDocument" EntityType="Self.FIDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FIDocumentDetail" EntityType="Self.FIDocumentDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryItem" EntityType="Self.InventoryItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryItemCategory" EntityType="Self.InventoryItemCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MMDocument" EntityType="Self.MMDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MMDocumentDetail" EntityType="Self.MMDocumentDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSC_User" EntityType="Self.MSC_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionFav" EntityType="Self.TransactionFav" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions_DynamicReport" EntityType="Self.Transactions_DynamicReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserJoinRole" EntityType="Self.UserJoinRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserJoinStock" EntityType="Self.UserJoinStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserJoinStock_Approve" EntityType="Self.UserJoinStock_Approve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableImport" EntityType="Self.TableImport" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TableImport].[TableName] AS [TableName]
+    FROM [dbo].[TableImport] AS [TableImport]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AccountingObject_AccountingObject" Association="Self.FK_AccountingObject_AccountingObject">
+            <End Role="AccountingObject" EntitySet="AccountingObject" />
+            <End Role="AccountingObject1" EntitySet="AccountingObject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryItem_InventoryItemCategory" Association="Self.FK_InventoryItem_InventoryItemCategory">
+            <End Role="InventoryItemCategory" EntitySet="InventoryItemCategory" />
+            <End Role="InventoryItem" EntitySet="InventoryItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryItem_Stock_Default" Association="Self.FK_InventoryItem_Stock_Default">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="InventoryItem" EntitySet="InventoryItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HamacoV3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Guid" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Guid" />
+          <Property Name="Grade" Type="Int32" Nullable="false" />
+          <Property Name="IsParent" Type="Boolean" Nullable="false" />
+          <Property Name="AccountCategoryID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AccountCategoryKind" Type="Int32" />
+          <Property Name="DetailByAccountingObject" Type="Boolean" Nullable="false" />
+          <Property Name="DetailByInventoryItem" Type="Boolean" Nullable="false" />
+          <Property Name="DetailByJob" Type="Boolean" Nullable="false" />
+          <Property Name="DetailByContract" Type="Boolean" Nullable="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <Property Name="DetailByForeignCurrency" Type="Boolean" Nullable="false" />
+          <Property Name="AccountingObjectType" Type="Int32" />
+          <Property Name="DetailByBankAccount" Type="Boolean" />
+          <Property Name="AccountNameEnglish" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Exits" Type="Boolean" />
+          <Property Name="GroupCost" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AccountCategory">
+          <Key>
+            <PropertyRef Name="AccountCategoryID" />
+          </Key>
+          <Property Name="AccountCategoryID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountCategoryName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountCategoryKind" Type="Int32" Nullable="false" />
+          <Property Name="DetailByAccountingObject" Type="Boolean" Nullable="false" />
+          <Property Name="DetailByInventoryItem" Type="Boolean" Nullable="false" />
+          <Property Name="DetailByJob" Type="Boolean" Nullable="false" />
+          <Property Name="DetailByContract" Type="Boolean" Nullable="false" />
+          <Property Name="AccountingObjectType" Type="Int32" />
+          <Property Name="DetailByBankAccount" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountingObject">
+          <Key>
+            <PropertyRef Name="AccountingObjectID" />
+          </Key>
+          <Property Name="AccountingObjectID" Type="Guid" Nullable="false" />
+          <Property Name="AccountingObjectCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountingObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountingObjectCategory" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="BranchID" Type="Guid" />
+          <Property Name="EmployeeBirthday" Type="DateTime" Precision="3" />
+          <Property Name="Prefix" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyTaxCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactSex" Type="Int32" />
+          <Property Name="ContactMobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ContactEmail" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="ContactOfficeTel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ContactHomeTel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ContactAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsEmployee" Type="Boolean" Nullable="false" />
+          <Property Name="IsPersonal" Type="Boolean" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IssueDate" Type="DateTime" Precision="3" />
+          <Property Name="IssueBy" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Guid" />
+          <Property Name="SaleCustomerGroupID" Type="Guid" />
+          <Property Name="Insured" Type="Boolean" />
+          <Property Name="LabourUnionFee" Type="Boolean" />
+          <Property Name="FamilyDeductionAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Inactive" Type="Boolean" />
+          <Property Name="MaximizeDebtAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DueTime" Type="Int32" />
+          <Property Name="SalaryScaleID" Type="Decimal" Precision="22" Scale="8" />
+          <Property Name="IsVendor" Type="Boolean" />
+          <Property Name="IsCustomer" Type="Boolean" />
+          <Property Name="Province" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Village" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AccountingObjectGroupID" Type="Guid" />
+          <Property Name="PaymentTermID" Type="Guid" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="AccountingObject1" Relationship="Self.FK_AccountingObject_AccountingObject" FromRole="AccountingObject" ToRole="AccountingObject1" />
+          <NavigationProperty Name="AccountingObject2" Relationship="Self.FK_AccountingObject_AccountingObject" FromRole="AccountingObject1" ToRole="AccountingObject" />
+        </EntityType>
+        <EntityType Name="BaoCaoBangCanDoiKeToan">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="ChiTieu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MaSo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ThuyetMinh" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Quy1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Quy2" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BaoCaoBangCanDoiKeToan_Period">
+          <Key>
+            <PropertyRef Name="STT" />
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="ChiTieu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MaSo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ThuyetMinh" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Quy1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Quy2" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BaoCaoBangCanDoiTaiKhoan">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NoDK" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CoDK" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PSNo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PSCo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LKNo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LKCo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NoCK" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CoCK" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="BaoCaoCongNoQuaHan">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="ngaychungtu" />
+            <PropertyRef Name="StockID" />
+            <PropertyRef Name="AccountingObjectID" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ngaychungtu" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StockID" Type="Guid" Nullable="false" />
+          <Property Name="AccountingObjectID" Type="Guid" Nullable="false" />
+          <Property Name="Branch" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountingObjectCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountingObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HanMuc" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ToiDa" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="No" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="QuaHan" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Tren30Ngay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Tren60Ngay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Tren90Ngay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Tren6Thang" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="VuotHanMuc" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="HopDong" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BaoCaoKetQuaHoatDongKinhDoanh">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" />
+          <Property Name="ChiTieu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaSo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ThuyetMinh" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Quy1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Quy2" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LuyKe" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="BaoCaoLuuChuyenTienTe">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" />
+          <Property Name="ChiTieu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MaSo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Quy1" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="BaoCaoTinhHinhThucHienNghiaVuNN">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="ChiTieu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MaSo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="NoDK" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NoPS" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CoPS" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NoLK" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CoLK" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NoCK" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="BaoCaoTonKho">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="FiscalYear" />
+            <PropertyRef Name="FiscalPeriod" />
+            <PropertyRef Name="InventoryItemCode" />
+            <PropertyRef Name="InventoryItemName" />
+            <PropertyRef Name="Unit" />
+            <PropertyRef Name="UnitPrice" />
+            <PropertyRef Name="StockCode" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FiscalYear" Type="Int32" Nullable="false" />
+          <Property Name="FiscalPeriod" Type="Int32" Nullable="false" />
+          <Property Name="InventoryItemCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InventoryItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="StockCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QuantityDK" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AmountDK" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityNTK" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AmountNTK" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityXTK" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AmountXTK" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityCK" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AmountCK" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityNTK2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AmountNTK2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityXTK2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AmountXTK2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityCK2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AmountCK2" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="Guid" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="BranchCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BranchName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsDependent" Type="Boolean" Nullable="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <Property Name="IsSystem" Type="Boolean" />
+          <Property Name="IsParent" Type="Boolean" />
+          <Property Name="Parent" Type="Guid" />
+          <Property Name="Grade" Type="Int32" />
+          <Property Name="StockBranch" Type="Guid" />
+          <Property Name="Province" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TDV" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TK" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Center">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Job" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyTaxCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CEO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DGM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChiefAccountant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cashier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Version" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Bank" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Dongia" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TaxCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DANHMUC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="STT" Type="Int32" />
+          <Property Name="DanhMuc1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DebitAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreditAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phieu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Distrist">
+          <Key>
+            <PropertyRef Name="DistristID" />
+          </Key>
+          <Property Name="DistristID" Type="Guid" Nullable="false" />
+          <Property Name="DistristCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DistristName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProvinceID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FIDocument">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="Guid" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FIDoc" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FIHeader" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DocType" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="MMDoc" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="RefDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PostedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RefNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountingObjectCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="AccountingObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AccountingObjectAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Posted" Type="Int32" />
+          <Property Name="CompanyTaxCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UserName2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StockCode1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StockCode2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TaxCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FIDocumentDetail">
+          <Key>
+            <PropertyRef Name="RefDetailID" />
+          </Key>
+          <Property Name="RefDetailID" Type="Guid" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FIDoc" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DebitAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreditAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AccountingObjectCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="AccountingObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ItemNote" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Posted" Type="Int32" />
+          <Property Name="RefDate" Type="DateTime" Precision="3" />
+          <Property Name="FIHeader" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DocType" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="StockCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InventoryItem">
+          <Key>
+            <PropertyRef Name="InventoryItemID" />
+          </Key>
+          <Property Name="InventoryItemID" Type="Guid" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="InventoryCategoryID" Type="Guid" Nullable="false" />
+          <Property Name="InventoryItemCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BarCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="InventoryItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GuarantyPeriod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ConvertUnit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ConvertRate" Type="Decimal" Precision="22" Scale="8" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="22" Scale="8" />
+          <Property Name="SalePrice" Type="Decimal" Precision="22" Scale="8" />
+          <Property Name="DefaultStockID" Type="Guid" />
+          <Property Name="InventoryAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="COGSAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SaleAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CostMethod" Type="Int32" />
+          <Property Name="MinimumStock" Type="Decimal" Precision="22" Scale="8" />
+          <Property Name="AccountingObjectID" Type="Guid" />
+          <Property Name="TaxRate" Type="Decimal" Precision="22" Scale="8" />
+          <Property Name="IsTool" Type="Boolean" />
+          <Property Name="InventoryItemType" Type="Int32" />
+          <Property Name="IsSystem" Type="Boolean" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <Property Name="SalePrice1" Type="Decimal" Precision="22" Scale="8" />
+          <Property Name="SalePrice2" Type="Decimal" Precision="22" Scale="8" />
+          <Property Name="SaleDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ItemSource" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsToolAndInventoryItem" Type="Boolean" />
+          <Property Name="InventoryCategorySpecialTaxID" Type="Guid" />
+          <Property Name="PrintMetarial" Type="Boolean" />
+          <Property Name="Parent" Type="Guid" />
+          <NavigationProperty Name="InventoryItemCategory" Relationship="Self.FK_InventoryItem_InventoryItemCategory" FromRole="InventoryItem" ToRole="InventoryItemCategory" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_InventoryItem_Stock_Default" FromRole="InventoryItem" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="InventoryItemCategory">
+          <Key>
+            <PropertyRef Name="InventoryCategoryID" />
+          </Key>
+          <Property Name="InventoryCategoryID" Type="Guid" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ParentID" Type="Guid" />
+          <Property Name="MISACodeID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsParent" Type="Boolean" />
+          <Property Name="Grade" Type="Int32" />
+          <Property Name="InventoryCategoryCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InventoryCategoryName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsTool" Type="Boolean" />
+          <Property Name="IsSystem" Type="Boolean" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="InventoryItems" Relationship="Self.FK_InventoryItem_InventoryItemCategory" FromRole="InventoryItemCategory" ToRole="InventoryItem" />
+        </EntityType>
+        <EntityType Name="MMDocument">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="Guid" Nullable="false" />
+          <Property Name="MMDoc" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StockCode1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StockCode2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RefType" Type="Int32" Nullable="false" />
+          <Property Name="PostedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RefDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RefNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MMHeader" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountingObjectCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="AccountingObjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AccountingObjectAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyTaxCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Posted" Type="Int32" Nullable="false" />
+          <Property Name="UserName2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="INOut" Type="Int32" Nullable="false" />
+          <Property Name="Factory" Type="Int32" />
+          <Property Name="Taixe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Dienthoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TaxCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MMDocumentDetail">
+          <Key>
+            <PropertyRef Name="RefDetailID" />
+          </Key>
+          <Property Name="RefDetailID" Type="Guid" Nullable="false" />
+          <Property Name="MMDoc" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="InventoryItemCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InventoryItemName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Decimal" Precision="22" Scale="8" />
+          <Property Name="QuantityConvert" Type="Decimal" Precision="22" Scale="8" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StockCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QuantityCK" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QuantityCK2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Posted" Type="Int32" />
+          <Property Name="RefType" Type="Int32" />
+          <Property Name="RefDate" Type="DateTime" Precision="3" />
+          <Property Name="MMHeader" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="INOut" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MSC_User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordEncryption" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsBranchManager" Type="Boolean" />
+          <Property Name="BranchID" Type="Guid" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="HomePhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="MobilePhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="WorkAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HomeAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <Property Name="IsOnline" Type="Boolean" />
+          <Property Name="IsSystem" Type="Boolean" Nullable="false" />
+          <Property Name="AuthenticationType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="ProvinceID" />
+          </Key>
+          <Property Name="ProvinceID" Type="Guid" Nullable="false" />
+          <Property Name="ProvinceCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProvinceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleCode" />
+          </Key>
+          <Property Name="RoleCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockID" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="StockID" Type="Guid" Nullable="false" />
+          <Property Name="StockCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StockName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BranchID" Type="Guid" />
+          <Property Name="DefaultAccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <Property Name="LPG" Type="Boolean" />
+          <Property Name="Parent" Type="Guid" />
+          <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TDV" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TK" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InventoryItems" Relationship="Self.FK_InventoryItem_Stock_Default" FromRole="Stock" ToRole="InventoryItem" />
+        </EntityType>
+        <EntityType Name="TransactionFav">
+          <Key>
+            <PropertyRef Name="TransactionCode" />
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="TransactionCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionCode" />
+          </Key>
+          <Property Name="TransactionCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TransactionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FormName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SortNo" Type="Int32" />
+          <Property Name="IsParent" Type="Int32" />
+          <Property Name="ParentFolder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RoleCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsDisplay" Type="Int32" />
+          <Property Name="IsDynamic" Type="Int32" />
+          <Property Name="ProcedureName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Transactions_DynamicReport">
+          <Key>
+            <PropertyRef Name="TransactionCode" />
+            <PropertyRef Name="FieldName" />
+            <PropertyRef Name="TypeName" />
+            <PropertyRef Name="IsInput" />
+          </Key>
+          <Property Name="TransactionCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FieldName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FieldNameVN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IsInput" Type="Int32" Nullable="false" />
+          <Property Name="OrderNo" Type="Int32" />
+          <Property Name="IsSum" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserJoinRole">
+          <Key>
+            <PropertyRef Name="RoleCode" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="RoleCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserJoinStock">
+          <Key>
+            <PropertyRef Name="StockCode" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="StockCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserJoinStock_Approve">
+          <Key>
+            <PropertyRef Name="StockCode" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="StockCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TableImport">
+          <Key>
+            <PropertyRef Name="TableName" />
+          </Key>
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AccountingObject_AccountingObject">
+          <End Role="AccountingObject" Type="Self.AccountingObject" Multiplicity="1" />
+          <End Role="AccountingObject1" Type="Self.AccountingObject" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingObject">
+              <PropertyRef Name="AccountingObjectID" />
+            </Principal>
+            <Dependent Role="AccountingObject1">
+              <PropertyRef Name="AccountingObjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryItem_InventoryItemCategory">
+          <End Role="InventoryItemCategory" Type="Self.InventoryItemCategory" Multiplicity="1" />
+          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryItemCategory">
+              <PropertyRef Name="InventoryCategoryID" />
+            </Principal>
+            <Dependent Role="InventoryItem">
+              <PropertyRef Name="InventoryCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryItem_Stock_Default">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="0..1" />
+          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="StockID" />
+            </Principal>
+            <Dependent Role="InventoryItem">
+              <PropertyRef Name="DefaultStockID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HamacoV3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="AccountCategories" EntityType="Self.AccountCategory" />
+          <EntitySet Name="AccountingObjects" EntityType="Self.AccountingObject" />
+          <EntitySet Name="BaoCaoBangCanDoiKeToans" EntityType="Self.BaoCaoBangCanDoiKeToan" />
+          <EntitySet Name="BaoCaoBangCanDoiKeToan_Period" EntityType="Self.BaoCaoBangCanDoiKeToan_Period" />
+          <EntitySet Name="BaoCaoBangCanDoiTaiKhoans" EntityType="Self.BaoCaoBangCanDoiTaiKhoan" />
+          <EntitySet Name="BaoCaoCongNoQuaHans" EntityType="Self.BaoCaoCongNoQuaHan" />
+          <EntitySet Name="BaoCaoKetQuaHoatDongKinhDoanhs" EntityType="Self.BaoCaoKetQuaHoatDongKinhDoanh" />
+          <EntitySet Name="BaoCaoLuuChuyenTienTes" EntityType="Self.BaoCaoLuuChuyenTienTe" />
+          <EntitySet Name="BaoCaoTinhHinhThucHienNghiaVuNNs" EntityType="Self.BaoCaoTinhHinhThucHienNghiaVuNN" />
+          <EntitySet Name="BaoCaoTonKhoes" EntityType="Self.BaoCaoTonKho" />
+          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="Centers" EntityType="Self.Center" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="DANHMUCs" EntityType="Self.DANHMUC" />
+          <EntitySet Name="Distrists" EntityType="Self.Distrist" />
+          <EntitySet Name="FIDocuments" EntityType="Self.FIDocument" />
+          <EntitySet Name="FIDocumentDetails" EntityType="Self.FIDocumentDetail" />
+          <EntitySet Name="InventoryItems" EntityType="Self.InventoryItem" />
+          <EntitySet Name="InventoryItemCategories" EntityType="Self.InventoryItemCategory" />
+          <EntitySet Name="MMDocuments" EntityType="Self.MMDocument" />
+          <EntitySet Name="MMDocumentDetails" EntityType="Self.MMDocumentDetail" />
+          <EntitySet Name="MSC_User" EntityType="Self.MSC_User" />
+          <EntitySet Name="Provinces" EntityType="Self.Province" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Stocks" EntityType="Self.Stock" />
+          <EntitySet Name="TransactionFavs" EntityType="Self.TransactionFav" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <EntitySet Name="Transactions_DynamicReport" EntityType="Self.Transactions_DynamicReport" />
+          <EntitySet Name="UserJoinRoles" EntityType="Self.UserJoinRole" />
+          <EntitySet Name="UserJoinStocks" EntityType="Self.UserJoinStock" />
+          <EntitySet Name="UserJoinStock_Approve" EntityType="Self.UserJoinStock_Approve" />
+          <EntitySet Name="TableImports" EntityType="Self.TableImport" />
+          <AssociationSet Name="FK_AccountingObject_AccountingObject" Association="Self.FK_AccountingObject_AccountingObject">
+            <End Role="AccountingObject" EntitySet="AccountingObjects" />
+            <End Role="AccountingObject1" EntitySet="AccountingObjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryItem_InventoryItemCategory" Association="Self.FK_InventoryItem_InventoryItemCategory">
+            <End Role="InventoryItemCategory" EntitySet="InventoryItemCategories" />
+            <End Role="InventoryItem" EntitySet="InventoryItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryItem_Stock_Default" Association="Self.FK_InventoryItem_Stock_Default">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="InventoryItem" EntitySet="InventoryItems" />
+          </AssociationSet>
+          <EntitySet Name="AccountPeriods" EntityType="HamacoV3Model.AccountPeriod" />
+          <EntitySet Name="AccountCustomerPeriods" EntityType="HamacoV3Model.AccountCustomerPeriod" />
+          <EntitySet Name="AccountCustomerStockPeriods" EntityType="HamacoV3Model.AccountCustomerStockPeriod" />
+        </EntityContainer>
+        <EntityType Name="AccountPeriod">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="FiscalYear" />
+            <PropertyRef Name="FiscalPeriod" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="AccountName" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="FiscalYear" Type="Int32" Nullable="false" />
+          <Property Name="FiscalPeriod" Type="Int32" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AccountName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NoDK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CoDK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PSNo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PSCo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="LKNo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="LKCo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="NoCK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CoCK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="AccountCustomerPeriod">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="FiscalYear" />
+            <PropertyRef Name="FiscalPeriod" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="AccountingObjectCode" />
+            <PropertyRef Name="AccountingObjectName" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="FiscalYear" Type="Int32" Nullable="false" />
+          <Property Name="FiscalPeriod" Type="Int32" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AccountingObjectCode" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="AccountingObjectName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NoDK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CoDK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PSNo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PSCo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="LKNo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="LKCo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="NoCK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CoCK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="AccountCustomerStockPeriod">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="FiscalYear" />
+            <PropertyRef Name="FiscalPeriod" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="StockCode" />
+            <PropertyRef Name="AccountingObjectCode" />
+            <PropertyRef Name="AccountingObjectName" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="FiscalYear" Type="Int32" Nullable="false" />
+          <Property Name="FiscalPeriod" Type="Int32" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StockCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AccountingObjectCode" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="AccountingObjectName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NoDK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CoDK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PSNo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PSCo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="LKNo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="LKCo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="NoCK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CoCK" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HamacoV3ModelStoreContainer" CdmEntityContainer="HamacoV3Entities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="HamacoV3Model.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="IsParent" ColumnName="IsParent" />
+                <ScalarProperty Name="AccountCategoryID" ColumnName="AccountCategoryID" />
+                <ScalarProperty Name="AccountCategoryKind" ColumnName="AccountCategoryKind" />
+                <ScalarProperty Name="DetailByAccountingObject" ColumnName="DetailByAccountingObject" />
+                <ScalarProperty Name="DetailByInventoryItem" ColumnName="DetailByInventoryItem" />
+                <ScalarProperty Name="DetailByJob" ColumnName="DetailByJob" />
+                <ScalarProperty Name="DetailByContract" ColumnName="DetailByContract" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="DetailByForeignCurrency" ColumnName="DetailByForeignCurrency" />
+                <ScalarProperty Name="AccountingObjectType" ColumnName="AccountingObjectType" />
+                <ScalarProperty Name="DetailByBankAccount" ColumnName="DetailByBankAccount" />
+                <ScalarProperty Name="AccountNameEnglish" ColumnName="AccountNameEnglish" />
+                <ScalarProperty Name="Exits" ColumnName="Exits" />
+                <ScalarProperty Name="GroupCost" ColumnName="GroupCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountCategories">
+            <EntityTypeMapping TypeName="HamacoV3Model.AccountCategory">
+              <MappingFragment StoreEntitySet="AccountCategory">
+                <ScalarProperty Name="AccountCategoryID" ColumnName="AccountCategoryID" />
+                <ScalarProperty Name="AccountCategoryName" ColumnName="AccountCategoryName" />
+                <ScalarProperty Name="AccountCategoryKind" ColumnName="AccountCategoryKind" />
+                <ScalarProperty Name="DetailByAccountingObject" ColumnName="DetailByAccountingObject" />
+                <ScalarProperty Name="DetailByInventoryItem" ColumnName="DetailByInventoryItem" />
+                <ScalarProperty Name="DetailByJob" ColumnName="DetailByJob" />
+                <ScalarProperty Name="DetailByContract" ColumnName="DetailByContract" />
+                <ScalarProperty Name="AccountingObjectType" ColumnName="AccountingObjectType" />
+                <ScalarProperty Name="DetailByBankAccount" ColumnName="DetailByBankAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountingObjects">
+            <EntityTypeMapping TypeName="HamacoV3Model.AccountingObject">
+              <MappingFragment StoreEntitySet="AccountingObject">
+                <ScalarProperty Name="AccountingObjectID" ColumnName="AccountingObjectID" />
+                <ScalarProperty Name="AccountingObjectCode" ColumnName="AccountingObjectCode" />
+                <ScalarProperty Name="AccountingObjectName" ColumnName="AccountingObjectName" />
+                <ScalarProperty Name="AccountingObjectCategory" ColumnName="AccountingObjectCategory" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="CompanyTaxCode" ColumnName="CompanyTaxCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+                <ScalarProperty Name="ContactSex" ColumnName="ContactSex" />
+                <ScalarProperty Name="ContactMobile" ColumnName="ContactMobile" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactOfficeTel" ColumnName="ContactOfficeTel" />
+                <ScalarProperty Name="ContactHomeTel" ColumnName="ContactHomeTel" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="IsEmployee" ColumnName="IsEmployee" />
+                <ScalarProperty Name="IsPersonal" ColumnName="IsPersonal" />
+                <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="IssueBy" ColumnName="IssueBy" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="SaleCustomerGroupID" ColumnName="SaleCustomerGroupID" />
+                <ScalarProperty Name="Insured" ColumnName="Insured" />
+                <ScalarProperty Name="LabourUnionFee" ColumnName="LabourUnionFee" />
+                <ScalarProperty Name="FamilyDeductionAmount" ColumnName="FamilyDeductionAmount" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="MaximizeDebtAmount" ColumnName="MaximizeDebtAmount" />
+                <ScalarProperty Name="DueTime" ColumnName="DueTime" />
+                <ScalarProperty Name="SalaryScaleID" ColumnName="SalaryScaleID" />
+                <ScalarProperty Name="IsVendor" ColumnName="IsVendor" />
+                <ScalarProperty Name="IsCustomer" ColumnName="IsCustomer" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Village" ColumnName="Village" />
+                <ScalarProperty Name="AccountingObjectGroupID" ColumnName="AccountingObjectGroupID" />
+                <ScalarProperty Name="PaymentTermID" ColumnName="PaymentTermID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaoCaoBangCanDoiKeToans">
+            <EntityTypeMapping TypeName="HamacoV3Model.BaoCaoBangCanDoiKeToan">
+              <MappingFragment StoreEntitySet="BaoCaoBangCanDoiKeToan">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ChiTieu" ColumnName="ChiTieu" />
+                <ScalarProperty Name="MaSo" ColumnName="MaSo" />
+                <ScalarProperty Name="ThuyetMinh" ColumnName="ThuyetMinh" />
+                <ScalarProperty Name="Quy1" ColumnName="Quy1" />
+                <ScalarProperty Name="Quy2" ColumnName="Quy2" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaoCaoBangCanDoiKeToan_Period">
+            <EntityTypeMapping TypeName="HamacoV3Model.BaoCaoBangCanDoiKeToan_Period">
+              <MappingFragment StoreEntitySet="BaoCaoBangCanDoiKeToan_Period">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ChiTieu" ColumnName="ChiTieu" />
+                <ScalarProperty Name="MaSo" ColumnName="MaSo" />
+                <ScalarProperty Name="ThuyetMinh" ColumnName="ThuyetMinh" />
+                <ScalarProperty Name="Quy1" ColumnName="Quy1" />
+                <ScalarProperty Name="Quy2" ColumnName="Quy2" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaoCaoBangCanDoiTaiKhoans">
+            <EntityTypeMapping TypeName="HamacoV3Model.BaoCaoBangCanDoiTaiKhoan">
+              <MappingFragment StoreEntitySet="BaoCaoBangCanDoiTaiKhoan">
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="NoDK" ColumnName="NoDK" />
+                <ScalarProperty Name="CoDK" ColumnName="CoDK" />
+                <ScalarProperty Name="PSNo" ColumnName="PSNo" />
+                <ScalarProperty Name="PSCo" ColumnName="PSCo" />
+                <ScalarProperty Name="LKNo" ColumnName="LKNo" />
+                <ScalarProperty Name="LKCo" ColumnName="LKCo" />
+                <ScalarProperty Name="NoCK" ColumnName="NoCK" />
+                <ScalarProperty Name="CoCK" ColumnName="CoCK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaoCaoCongNoQuaHans">
+            <EntityTypeMapping TypeName="HamacoV3Model.BaoCaoCongNoQuaHan">
+              <MappingFragment StoreEntitySet="BaoCaoCongNoQuaHan">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="ngaychungtu" ColumnName="ngaychungtu" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+                <ScalarProperty Name="AccountingObjectID" ColumnName="AccountingObjectID" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="AccountingObjectCode" ColumnName="AccountingObjectCode" />
+                <ScalarProperty Name="AccountingObjectName" ColumnName="AccountingObjectName" />
+                <ScalarProperty Name="HanMuc" ColumnName="HanMuc" />
+                <ScalarProperty Name="ToiDa" ColumnName="ToiDa" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="QuaHan" ColumnName="QuaHan" />
+                <ScalarProperty Name="Tren30Ngay" ColumnName="Tren30Ngay" />
+                <ScalarProperty Name="Tren60Ngay" ColumnName="Tren60Ngay" />
+                <ScalarProperty Name="Tren90Ngay" ColumnName="Tren90Ngay" />
+                <ScalarProperty Name="Tren6Thang" ColumnName="Tren6Thang" />
+                <ScalarProperty Name="VuotHanMuc" ColumnName="VuotHanMuc" />
+                <ScalarProperty Name="HopDong" ColumnName="HopDong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaoCaoKetQuaHoatDongKinhDoanhs">
+            <EntityTypeMapping TypeName="HamacoV3Model.BaoCaoKetQuaHoatDongKinhDoanh">
+              <MappingFragment StoreEntitySet="BaoCaoKetQuaHoatDongKinhDoanh">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="ChiTieu" ColumnName="ChiTieu" />
+                <ScalarProperty Name="MaSo" ColumnName="MaSo" />
+                <ScalarProperty Name="ThuyetMinh" ColumnName="ThuyetMinh" />
+                <ScalarProperty Name="Quy1" ColumnName="Quy1" />
+                <ScalarProperty Name="Quy2" ColumnName="Quy2" />
+                <ScalarProperty Name="LuyKe" ColumnName="LuyKe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaoCaoLuuChuyenTienTes">
+            <EntityTypeMapping TypeName="HamacoV3Model.BaoCaoLuuChuyenTienTe">
+              <MappingFragment StoreEntitySet="BaoCaoLuuChuyenTienTe">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="ChiTieu" ColumnName="ChiTieu" />
+                <ScalarProperty Name="MaSo" ColumnName="MaSo" />
+                <ScalarProperty Name="Quy1" ColumnName="Quy1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaoCaoTinhHinhThucHienNghiaVuNNs">
+            <EntityTypeMapping TypeName="HamacoV3Model.BaoCaoTinhHinhThucHienNghiaVuNN">
+              <MappingFragment StoreEntitySet="BaoCaoTinhHinhThucHienNghiaVuNN">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ChiTieu" ColumnName="ChiTieu" />
+                <ScalarProperty Name="MaSo" ColumnName="MaSo" />
+                <ScalarProperty Name="NoDK" ColumnName="NoDK" />
+                <ScalarProperty Name="NoPS" ColumnName="NoPS" />
+                <ScalarProperty Name="CoPS" ColumnName="CoPS" />
+                <ScalarProperty Name="NoLK" ColumnName="NoLK" />
+                <ScalarProperty Name="CoLK" ColumnName="CoLK" />
+                <ScalarProperty Name="NoCK" ColumnName="NoCK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaoCaoTonKhoes">
+            <EntityTypeMapping TypeName="HamacoV3Model.BaoCaoTonKho">
+              <MappingFragment StoreEntitySet="BaoCaoTonKho">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="FiscalPeriod" ColumnName="FiscalPeriod" />
+                <ScalarProperty Name="InventoryItemCode" ColumnName="InventoryItemCode" />
+                <ScalarProperty Name="InventoryItemName" ColumnName="InventoryItemName" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="QuantityDK" ColumnName="QuantityDK" />
+                <ScalarProperty Name="AmountDK" ColumnName="AmountDK" />
+                <ScalarProperty Name="QuantityNTK" ColumnName="QuantityNTK" />
+                <ScalarProperty Name="AmountNTK" ColumnName="AmountNTK" />
+                <ScalarProperty Name="QuantityXTK" ColumnName="QuantityXTK" />
+                <ScalarProperty Name="AmountXTK" ColumnName="AmountXTK" />
+                <ScalarProperty Name="QuantityCK" ColumnName="QuantityCK" />
+                <ScalarProperty Name="AmountCK" ColumnName="AmountCK" />
+                <ScalarProperty Name="QuantityNTK2" ColumnName="QuantityNTK2" />
+                <ScalarProperty Name="AmountNTK2" ColumnName="AmountNTK2" />
+                <ScalarProperty Name="QuantityXTK2" ColumnName="QuantityXTK2" />
+                <ScalarProperty Name="AmountXTK2" ColumnName="AmountXTK2" />
+                <ScalarProperty Name="QuantityCK2" ColumnName="QuantityCK2" />
+                <ScalarProperty Name="AmountCK2" ColumnName="AmountCK2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="HamacoV3Model.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsDependent" ColumnName="IsDependent" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="IsSystem" ColumnName="IsSystem" />
+                <ScalarProperty Name="IsParent" ColumnName="IsParent" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="StockBranch" ColumnName="StockBranch" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="TDV" ColumnName="TDV" />
+                <ScalarProperty Name="TK" ColumnName="TK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Centers">
+            <EntityTypeMapping TypeName="HamacoV3Model.Center">
+              <MappingFragment StoreEntitySet="Center">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CompanyTaxCode" ColumnName="CompanyTaxCode" />
+                <ScalarProperty Name="CEO" ColumnName="CEO" />
+                <ScalarProperty Name="DGM" ColumnName="DGM" />
+                <ScalarProperty Name="ChiefAccountant" ColumnName="ChiefAccountant" />
+                <ScalarProperty Name="Cashier" ColumnName="Cashier" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="Dongia" ColumnName="Dongia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="HamacoV3Model.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DANHMUCs">
+            <EntityTypeMapping TypeName="HamacoV3Model.DANHMUC">
+              <MappingFragment StoreEntitySet="DANHMUC">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="DanhMuc1" ColumnName="DanhMuc" />
+                <ScalarProperty Name="DebitAccount" ColumnName="DebitAccount" />
+                <ScalarProperty Name="CreditAccount" ColumnName="CreditAccount" />
+                <ScalarProperty Name="Phieu" ColumnName="Phieu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Distrists">
+            <EntityTypeMapping TypeName="HamacoV3Model.Distrist">
+              <MappingFragment StoreEntitySet="Distrist">
+                <ScalarProperty Name="DistristID" ColumnName="DistristID" />
+                <ScalarProperty Name="DistristCode" ColumnName="DistristCode" />
+                <ScalarProperty Name="DistristName" ColumnName="DistristName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FIDocuments">
+            <EntityTypeMapping TypeName="HamacoV3Model.FIDocument">
+              <MappingFragment StoreEntitySet="FIDocument">
+                <ScalarProperty Name="RefID" ColumnName="RefID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="FIDoc" ColumnName="FIDoc" />
+                <ScalarProperty Name="FIHeader" ColumnName="FIHeader" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="MMDoc" ColumnName="MMDoc" />
+                <ScalarProperty Name="RefDate" ColumnName="RefDate" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="RefNo" ColumnName="RefNo" />
+                <ScalarProperty Name="AccountingObjectCode" ColumnName="AccountingObjectCode" />
+                <ScalarProperty Name="AccountingObjectName" ColumnName="AccountingObjectName" />
+                <ScalarProperty Name="AccountingObjectAddress" ColumnName="AccountingObjectAddress" />
+                <ScalarProperty Name="Posted" ColumnName="Posted" />
+                <ScalarProperty Name="CompanyTaxCode" ColumnName="CompanyTaxCode" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="UserName2" ColumnName="UserName2" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="StockCode1" ColumnName="StockCode1" />
+                <ScalarProperty Name="StockCode2" ColumnName="StockCode2" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FIDocumentDetails">
+            <EntityTypeMapping TypeName="HamacoV3Model.FIDocumentDetail">
+              <MappingFragment StoreEntitySet="FIDocumentDetail">
+                <ScalarProperty Name="RefDetailID" ColumnName="RefDetailID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="FIDoc" ColumnName="FIDoc" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DebitAccount" ColumnName="DebitAccount" />
+                <ScalarProperty Name="CreditAccount" ColumnName="CreditAccount" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AccountingObjectCode" ColumnName="AccountingObjectCode" />
+                <ScalarProperty Name="AccountingObjectName" ColumnName="AccountingObjectName" />
+                <ScalarProperty Name="ItemNote" ColumnName="ItemNote" />
+                <ScalarProperty Name="Posted" ColumnName="Posted" />
+                <ScalarProperty Name="RefDate" ColumnName="RefDate" />
+                <ScalarProperty Name="FIHeader" ColumnName="FIHeader" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryItems">
+            <EntityTypeMapping TypeName="HamacoV3Model.InventoryItem">
+              <MappingFragment StoreEntitySet="InventoryItem">
+                <ScalarProperty Name="InventoryItemID" ColumnName="InventoryItemID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="InventoryCategoryID" ColumnName="InventoryCategoryID" />
+                <ScalarProperty Name="InventoryItemCode" ColumnName="InventoryItemCode" />
+                <ScalarProperty Name="BarCode" ColumnName="BarCode" />
+                <ScalarProperty Name="InventoryItemName" ColumnName="InventoryItemName" />
+                <ScalarProperty Name="GuarantyPeriod" ColumnName="GuarantyPeriod" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="ConvertUnit" ColumnName="ConvertUnit" />
+                <ScalarProperty Name="ConvertRate" ColumnName="ConvertRate" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="DefaultStockID" ColumnName="DefaultStockID" />
+                <ScalarProperty Name="InventoryAccount" ColumnName="InventoryAccount" />
+                <ScalarProperty Name="COGSAccount" ColumnName="COGSAccount" />
+                <ScalarProperty Name="SaleAccount" ColumnName="SaleAccount" />
+                <ScalarProperty Name="CostMethod" ColumnName="CostMethod" />
+                <ScalarProperty Name="MinimumStock" ColumnName="MinimumStock" />
+                <ScalarProperty Name="AccountingObjectID" ColumnName="AccountingObjectID" />
+                <ScalarProperty Name="TaxRate" ColumnName="TaxRate" />
+                <ScalarProperty Name="IsTool" ColumnName="IsTool" />
+                <ScalarProperty Name="InventoryItemType" ColumnName="InventoryItemType" />
+                <ScalarProperty Name="IsSystem" ColumnName="IsSystem" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="SalePrice1" ColumnName="SalePrice1" />
+                <ScalarProperty Name="SalePrice2" ColumnName="SalePrice2" />
+                <ScalarProperty Name="SaleDescription" ColumnName="SaleDescription" />
+                <ScalarProperty Name="PurchaseDescription" ColumnName="PurchaseDescription" />
+                <ScalarProperty Name="ItemSource" ColumnName="ItemSource" />
+                <ScalarProperty Name="IsToolAndInventoryItem" ColumnName="IsToolAndInventoryItem" />
+                <ScalarProperty Name="InventoryCategorySpecialTaxID" ColumnName="InventoryCategorySpecialTaxID" />
+                <ScalarProperty Name="PrintMetarial" ColumnName="PrintMetarial" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryItemCategories">
+            <EntityTypeMapping TypeName="HamacoV3Model.InventoryItemCategory">
+              <MappingFragment StoreEntitySet="InventoryItemCategory">
+                <ScalarProperty Name="InventoryCategoryID" ColumnName="InventoryCategoryID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="MISACodeID" ColumnName="MISACodeID" />
+                <ScalarProperty Name="IsParent" ColumnName="IsParent" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="InventoryCategoryCode" ColumnName="InventoryCategoryCode" />
+                <ScalarProperty Name="InventoryCategoryName" ColumnName="InventoryCategoryName" />
+                <ScalarProperty Name="IsTool" ColumnName="IsTool" />
+                <ScalarProperty Name="IsSystem" ColumnName="IsSystem" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MMDocuments">
+            <EntityTypeMapping TypeName="HamacoV3Model.MMDocument">
+              <MappingFragment StoreEntitySet="MMDocument">
+                <ScalarProperty Name="RefID" ColumnName="RefID" />
+                <ScalarProperty Name="MMDoc" ColumnName="MMDoc" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="StockCode1" ColumnName="StockCode1" />
+                <ScalarProperty Name="StockCode2" ColumnName="StockCode2" />
+                <ScalarProperty Name="RefType" ColumnName="RefType" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="RefDate" ColumnName="RefDate" />
+                <ScalarProperty Name="RefNo" ColumnName="RefNo" />
+                <ScalarProperty Name="MMHeader" ColumnName="MMHeader" />
+                <ScalarProperty Name="AccountingObjectCode" ColumnName="AccountingObjectCode" />
+                <ScalarProperty Name="AccountingObjectName" ColumnName="AccountingObjectName" />
+                <ScalarProperty Name="AccountingObjectAddress" ColumnName="AccountingObjectAddress" />
+                <ScalarProperty Name="CompanyTaxCode" ColumnName="CompanyTaxCode" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Posted" ColumnName="Posted" />
+                <ScalarProperty Name="UserName2" ColumnName="UserName2" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="INOut" ColumnName="INOut" />
+                <ScalarProperty Name="Factory" ColumnName="Factory" />
+                <ScalarProperty Name="Taixe" ColumnName="Taixe" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="Dienthoai" ColumnName="Dienthoai" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MMDocumentDetails">
+            <EntityTypeMapping TypeName="HamacoV3Model.MMDocumentDetail">
+              <MappingFragment StoreEntitySet="MMDocumentDetail">
+                <ScalarProperty Name="RefDetailID" ColumnName="RefDetailID" />
+                <ScalarProperty Name="MMDoc" ColumnName="MMDoc" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="InventoryItemCode" ColumnName="InventoryItemCode" />
+                <ScalarProperty Name="InventoryItemName" ColumnName="InventoryItemName" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="QuantityConvert" ColumnName="QuantityConvert" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="QuantityCK" ColumnName="QuantityCK" />
+                <ScalarProperty Name="QuantityCK2" ColumnName="QuantityCK2" />
+                <ScalarProperty Name="Posted" ColumnName="Posted" />
+                <ScalarProperty Name="RefType" ColumnName="RefType" />
+                <ScalarProperty Name="RefDate" ColumnName="RefDate" />
+                <ScalarProperty Name="MMHeader" ColumnName="MMHeader" />
+                <ScalarProperty Name="INOut" ColumnName="INOut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSC_User">
+            <EntityTypeMapping TypeName="HamacoV3Model.MSC_User">
+              <MappingFragment StoreEntitySet="MSC_User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordEncryption" ColumnName="PasswordEncryption" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsBranchManager" ColumnName="IsBranchManager" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="WorkAddress" ColumnName="WorkAddress" />
+                <ScalarProperty Name="HomeAddress" ColumnName="HomeAddress" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="IsSystem" ColumnName="IsSystem" />
+                <ScalarProperty Name="AuthenticationType" ColumnName="AuthenticationType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provinces">
+            <EntityTypeMapping TypeName="HamacoV3Model.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="ProvinceCode" ColumnName="ProvinceCode" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="HamacoV3Model.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="HamacoV3Model.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="StockName" ColumnName="StockName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="DefaultAccountNumber" ColumnName="DefaultAccountNumber" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="LPG" ColumnName="LPG" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="InvName" ColumnName="InvName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="TDV" ColumnName="TDV" />
+                <ScalarProperty Name="TK" ColumnName="TK" />
+                <ScalarProperty Name="LV" ColumnName="LV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionFavs">
+            <EntityTypeMapping TypeName="HamacoV3Model.TransactionFav">
+              <MappingFragment StoreEntitySet="TransactionFav">
+                <ScalarProperty Name="TransactionCode" ColumnName="TransactionCode" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="HamacoV3Model.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="TransactionCode" ColumnName="TransactionCode" />
+                <ScalarProperty Name="TransactionName" ColumnName="TransactionName" />
+                <ScalarProperty Name="FormName" ColumnName="FormName" />
+                <ScalarProperty Name="SortNo" ColumnName="SortNo" />
+                <ScalarProperty Name="IsParent" ColumnName="IsParent" />
+                <ScalarProperty Name="ParentFolder" ColumnName="ParentFolder" />
+                <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+                <ScalarProperty Name="IsDisplay" ColumnName="IsDisplay" />
+                <ScalarProperty Name="IsDynamic" ColumnName="IsDynamic" />
+                <ScalarProperty Name="ProcedureName" ColumnName="ProcedureName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions_DynamicReport">
+            <EntityTypeMapping TypeName="HamacoV3Model.Transactions_DynamicReport">
+              <MappingFragment StoreEntitySet="Transactions_DynamicReport">
+                <ScalarProperty Name="TransactionCode" ColumnName="TransactionCode" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="FieldNameVN" ColumnName="FieldNameVN" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="IsInput" ColumnName="IsInput" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="IsSum" ColumnName="IsSum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserJoinRoles">
+            <EntityTypeMapping TypeName="HamacoV3Model.UserJoinRole">
+              <MappingFragment StoreEntitySet="UserJoinRole">
+                <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserJoinStocks">
+            <EntityTypeMapping TypeName="HamacoV3Model.UserJoinStock">
+              <MappingFragment StoreEntitySet="UserJoinStock">
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserJoinStock_Approve">
+            <EntityTypeMapping TypeName="HamacoV3Model.UserJoinStock_Approve">
+              <MappingFragment StoreEntitySet="UserJoinStock_Approve">
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableImports">
+            <EntityTypeMapping TypeName="HamacoV3Model.TableImport">
+              <MappingFragment StoreEntitySet="TableImport">
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountPeriods">
+            <EntityTypeMapping TypeName="HamacoV3Model.AccountPeriod">
+              <MappingFragment StoreEntitySet="AccountPeriod">
+                <ScalarProperty Name="CoCK" ColumnName="CoCK" />
+                <ScalarProperty Name="NoCK" ColumnName="NoCK" />
+                <ScalarProperty Name="LKCo" ColumnName="LKCo" />
+                <ScalarProperty Name="LKNo" ColumnName="LKNo" />
+                <ScalarProperty Name="PSCo" ColumnName="PSCo" />
+                <ScalarProperty Name="PSNo" ColumnName="PSNo" />
+                <ScalarProperty Name="CoDK" ColumnName="CoDK" />
+                <ScalarProperty Name="NoDK" ColumnName="NoDK" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="FiscalPeriod" ColumnName="FiscalPeriod" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountCustomerPeriods">
+            <EntityTypeMapping TypeName="HamacoV3Model.AccountCustomerPeriod">
+              <MappingFragment StoreEntitySet="AccountCustomerPeriod">
+                <ScalarProperty Name="CoCK" ColumnName="CoCK" />
+                <ScalarProperty Name="NoCK" ColumnName="NoCK" />
+                <ScalarProperty Name="LKCo" ColumnName="LKCo" />
+                <ScalarProperty Name="LKNo" ColumnName="LKNo" />
+                <ScalarProperty Name="PSCo" ColumnName="PSCo" />
+                <ScalarProperty Name="PSNo" ColumnName="PSNo" />
+                <ScalarProperty Name="CoDK" ColumnName="CoDK" />
+                <ScalarProperty Name="NoDK" ColumnName="NoDK" />
+                <ScalarProperty Name="AccountingObjectName" ColumnName="AccountingObjectName" />
+                <ScalarProperty Name="AccountingObjectCode" ColumnName="AccountingObjectCode" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="FiscalPeriod" ColumnName="FiscalPeriod" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountCustomerStockPeriods">
+            <EntityTypeMapping TypeName="HamacoV3Model.AccountCustomerStockPeriod">
+              <MappingFragment StoreEntitySet="AccountCustomerStockPeriod">
+                <ScalarProperty Name="CoCK" ColumnName="CoCK" />
+                <ScalarProperty Name="NoCK" ColumnName="NoCK" />
+                <ScalarProperty Name="LKCo" ColumnName="LKCo" />
+                <ScalarProperty Name="LKNo" ColumnName="LKNo" />
+                <ScalarProperty Name="PSCo" ColumnName="PSCo" />
+                <ScalarProperty Name="PSNo" ColumnName="PSNo" />
+                <ScalarProperty Name="CoDK" ColumnName="CoDK" />
+                <ScalarProperty Name="NoDK" ColumnName="NoDK" />
+                <ScalarProperty Name="AccountingObjectName" ColumnName="AccountingObjectName" />
+                <ScalarProperty Name="AccountingObjectCode" ColumnName="AccountingObjectCode" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="FiscalPeriod" ColumnName="FiscalPeriod" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

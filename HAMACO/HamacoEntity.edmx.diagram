@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="39aa7e70253d46aaa728350f155c6969" Name="Diagram1">
+        <EntityTypeShape EntityType="HamacoV3Model.Account" Width="1.5" PointX="7.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.AccountCategory" Width="1.5" PointX="7.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.AccountingObject" Width="1.5" PointX="5.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.BaoCaoBangCanDoiKeToan" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.BaoCaoBangCanDoiKeToan_Period" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.BaoCaoBangCanDoiTaiKhoan" Width="1.5" PointX="2.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.BaoCaoCongNoQuaHan" Width="1.5" PointX="9.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.BaoCaoKetQuaHoatDongKinhDoanh" Width="1.5" PointX="7.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.BaoCaoLuuChuyenTienTe" Width="1.5" PointX="9.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.BaoCaoTinhHinhThucHienNghiaVuNN" Width="1.5" PointX="11.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.BaoCaoTonKho" Width="1.5" PointX="11.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.Branch" Width="1.5" PointX="4.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.Center" Width="1.5" PointX="11.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.Company" Width="1.5" PointX="13.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.DANHMUC" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.Distrist" Width="1.5" PointX="13.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.FIDocument" Width="1.5" PointX="13.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.FIDocumentDetail" Width="1.5" PointX="13.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.InventoryItem" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.InventoryItemCategory" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.MMDocument" Width="1.5" PointX="6.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.MMDocumentDetail" Width="1.5" PointX="8.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.MSC_User" Width="1.5" PointX="15.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.Province" Width="1.5" PointX="15.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.Role" Width="1.5" PointX="15.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.Stock" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.TransactionFav" Width="1.5" PointX="10.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.Transaction" Width="1.5" PointX="15.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.Transactions_DynamicReport" Width="1.5" PointX="0.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.UserJoinRole" Width="1.5" PointX="2.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.UserJoinStock" Width="1.5" PointX="17.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.UserJoinStock_Approve" Width="1.5" PointX="17.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HamacoV3Model.TableImport" Width="1.5" PointX="17.75" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="HamacoV3Model.FK_AccountingObject_AccountingObject" ManuallyRouted="false" />
+        <AssociationConnector Association="HamacoV3Model.FK_InventoryItem_InventoryItemCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="HamacoV3Model.FK_InventoryItem_Stock_Default" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HamacoV3Model.AccountPeriod" Width="1.5" PointX="18.375" PointY="11.75" />
+        <EntityTypeShape EntityType="HamacoV3Model.AccountCustomerPeriod" Width="1.5" PointX="18.375" PointY="16.75" />
+        <EntityTypeShape EntityType="HamacoV3Model.AccountCustomerStockPeriod" Width="1.5" PointX="20.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
