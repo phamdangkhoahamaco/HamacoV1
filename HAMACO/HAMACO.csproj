@@ -270,8 +270,15 @@
     <Reference Include="Microsoft.Identity.Client, Version=3.0.8.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Identity.Client.3.0.8\lib\net45\Microsoft.Identity.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Project\EInvoice_FPT\EInvoice_FPT\EInvoice_FPT\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\Project\EInvoice_FPT\EInvoice_FPT\EInvoice_FPT\bin\Debug\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="SqlBulkCopy, Version=1.0.0.0, Culture=neutral, PublicKeyToken=51331b1e3402a75f, processorArchitecture=MSIL">
       <HintPath>..\packages\SqlBulkCopy.1.0.0\lib\net40\SqlBulkCopy.dll</HintPath>
     </Reference>
@@ -396,9 +403,11 @@
     <Compile Include="Center.cs">
       <DependentUpon>HamacoEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClassApiEinvoice.cs" />
     <Compile Include="Company.cs">
       <DependentUpon>HamacoEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="ConvertMoney.cs" />
     <Compile Include="DANHMUC.cs">
       <DependentUpon>HamacoEntity.tt</DependentUpon>
     </Compile>
@@ -414,6 +423,10 @@
     <Compile Include="ddhgas.Designer.cs">
       <DependentUpon>ddhgas.cs</DependentUpon>
     </Compile>
+    <Compile Include="demo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="demo.Designer.cs" />
     <Compile Include="Depreciation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -470,6 +483,12 @@
     </Compile>
     <Compile Include="Frm_FIDocument_New.Designer.cs">
       <DependentUpon>Frm_FIDocument_New.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Invoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Invoice.Designer.cs">
+      <DependentUpon>Frm_Invoice.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Login2.cs">
       <SubType>Form</SubType>
@@ -956,6 +975,7 @@
     <Compile Include="MSC_User.cs">
       <DependentUpon>HamacoEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="MultiSelectionEditingHelper.cs" />
     <Compile Include="p.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Frm_phieunhapgas.cs">
@@ -1903,6 +1923,7 @@
     <EmbeddedResource Include="ddhgas.resx">
       <DependentUpon>ddhgas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="demo.resx" />
     <EmbeddedResource Include="Depreciation.resx">
       <DependentUpon>Depreciation.cs</DependentUpon>
     </EmbeddedResource>
@@ -1926,6 +1947,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_FIDocument_New.resx">
       <DependentUpon>Frm_FIDocument_New.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Invoice.resx">
+      <DependentUpon>Frm_Invoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Login2.resx">
       <DependentUpon>Frm_Login2.cs</DependentUpon>

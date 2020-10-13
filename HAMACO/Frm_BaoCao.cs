@@ -49,7 +49,7 @@ namespace HAMACO
         public string getAccountNumber(string a)
         {
             AccountNumber = a;
-            txtAccountNumber.Text = AccountNumber;
+            txtAccountNumber.EditValue = AccountNumber;
             return AccountNumber;
         }
         //AccountingObjectCode
@@ -61,7 +61,7 @@ namespace HAMACO
         public string getStockCode(string a)
         {
             StockCode = a;
-            ledv.Text = StockCode;
+            ledv.EditValue = StockCode;
             return StockCode;
         }
         public string getYear(string a)
@@ -109,31 +109,31 @@ namespace HAMACO
                 load_txtAccountNumber(); // Ma TK
 
                 if (Globals.transactioncode == "HDKD") groupBox2.Visible = true;
-                if (Globals.transactioncode == "CDKT") groupBox2.Visible = true;
-                if (Globals.transactioncode == "CDTK") groupBox2.Visible = true;
-                if (Globals.transactioncode == "LCTT") groupBox2.Visible = true;
-                if (Globals.transactioncode == "CNQH") groupBox2.Visible = true;
-                if (Globals.transactioncode == "NVNN") groupBox2.Visible = true;
-                if (Globals.transactioncode == "DMCP") groupBox2.Visible = true;
-                if (Globals.transactioncode == "DMCP") groupBox1.Visible = true;
-                if (Globals.transactioncode == "BCTK") groupBox1.Visible = true; // ton kho
+                else if (Globals.transactioncode == "CDKT") groupBox2.Visible = true;
+                else if(Globals.transactioncode == "CDTK") groupBox2.Visible = true;
+                else if (Globals.transactioncode == "LCTT") groupBox2.Visible = true;
+                else if (Globals.transactioncode == "CNQH") groupBox2.Visible = true;
+                else if (Globals.transactioncode == "NVNN") groupBox2.Visible = true;
+                else if (Globals.transactioncode == "DMCP") groupBox2.Visible = true;
+                else if (Globals.transactioncode == "DMCP") groupBox1.Visible = true;
+                else if (Globals.transactioncode == "BCTK") groupBox1.Visible = true; // ton kho
 
 
                 // khai bao ngay
 
                 ngay = DateTime.DaysInMonth(Int32.Parse(txtYear.Text), Int32.Parse(txtMonth.Text)).ToString();
-                //denngay = DateTime.Parse(txtMonth.Text + "/" + ngay + "/" + txtYear.Text).ToString();
-                //tungay = DateTime.Parse(txtMonth.Text + "/1/" + txtYear.Text).ToString();
-                //ngaydau = tungay;
-                //ngaycuoi = DateTime.Parse(denngay).AddDays(1).AddSeconds(-1).ToString();
+                denngay = DateTime.Parse(txtMonth.Text + "/" + ngay + "/" + txtYear.Text).ToString();
+                tungay = DateTime.Parse(txtMonth.Text + "/1/" + txtYear.Text).ToString();
+                ngaydau = tungay;
+                ngaycuoi = DateTime.Parse(denngay).AddDays(1).AddSeconds(-1).ToString();
 
-                //thangso = DateTime.Parse(tungay).AddMonths(-1).Month.ToString();
-                //namso = DateTime.Parse(tungay).AddMonths(-1).Year.ToString();
-                //thangtruoc = DateTime.Parse(tungay).Month.ToString();
+                thangso = DateTime.Parse(tungay).AddMonths(-1).Month.ToString();
+                namso = DateTime.Parse(tungay).AddMonths(-1).Year.ToString();
+                thangtruoc = DateTime.Parse(tungay).Month.ToString();
                 ///thangtruoc = thangso;
                 thangdau = thangtruoc;
-                //thang = DateTime.Parse(denngay).Month;
-                //nam = DateTime.Parse(denngay).Year;
+                thang = DateTime.Parse(denngay).Month;
+                nam = DateTime.Parse(denngay).Year;
 
                 load_content();
             }
@@ -143,63 +143,20 @@ namespace HAMACO
 
         private void load_txtAccountNumber()
         {
-            txtAccountNumber.Properties.View.Columns.Clear();
-
-            DataTable temp = new DataTable();
-            temp.Columns.Add("AccountNumber");
-            temp.Columns.Add("Account Name");
-
-            var db = gen.GetNewEntity(); // khai bao new entity Framework
-            {
-                var query = db.AccountPeriods
-                    .Where(p => p.CompanyCode == Globals.companycode && (p.NoCK>0 || p.CoCK>0)
-                    && p.FiscalPeriod == thang)
-                    .Select(p => new { p.AccountNumber, p.AccountName })
-                    .OrderBy(p => p.AccountNumber)
-                    .ToList();
-                //temp = gen.ConvertToDataTable(query);
-                foreach (var data in query)
-                {
-                    DataRow dr = temp.NewRow();
-                    dr[0] = data.AccountNumber;
-                    dr[1] = data.AccountName;
-                    temp.Rows.Add(dr);
-                }
-            }
-
-            txtAccountNumber.Properties.DataSource = temp;
-            txtAccountNumber.Properties.DisplayMember = "AccountNumber";
+         
+            DataTable dtTemp = p._SQLTraveDatatable("Select AccountNumber,AccountName from AccountPeriod where (NoCK>0 or CoCK>0) and  FiscalPeriod = '" + thang + "' and  FiscalPeriod = '" + thang+"' and   CompanyCode ='" + Globals.companycode + "'  ORDER BY AccountNumber", gen.GetConn());
+            txtAccountNumber.Properties.DataSource = dtTemp;
+            txtAccountNumber.Properties.DisplayMember = "AccountName";
             txtAccountNumber.Properties.ValueMember = "AccountNumber";
             txtAccountNumber.Focus();
         }
 
         private void load_ledv()
-        {
-            ledv.Properties.View.Columns.Clear();
+        {           
+            DataTable dtTemp = p._SQLTraveDatatable("Select StockCode,StockName from Stock where  CompanyCode ='" + Globals.companycode + "'  ORDER BY StockCode", gen.GetConn());
 
-            DataTable temp = new DataTable();
-            temp.Columns.Add("Stock");
-            temp.Columns.Add("Stock Name");
-
-            var db= gen.GetNewEntity(); // khai bao new entity Framework
-            {
-                var query = db.Stocks
-                    .Where(p => p.CompanyCode == Globals.companycode)
-                    .Select(p => new { p.StockCode, p.StockName })
-                    .OrderBy(p=>p.StockCode)
-                    .ToList();
-                //temp = gen.ConvertToDataTable(query);
-                foreach (var data in query)
-                {
-                    DataRow dr = temp.NewRow();
-                    dr[0] = data.StockCode;
-                    dr[1] = data.StockName;
-                    temp.Rows.Add(dr);
-                }
-            }
-
-            ledv.Properties.DataSource = temp;
-            ledv.Properties.DisplayMember = "Stock";
+            ledv.Properties.DataSource = dtTemp;
+            ledv.Properties.DisplayMember = "StockName";
             ledv.Properties.ValueMember = "Stock";
             ledv.Focus();
         }
@@ -232,7 +189,7 @@ namespace HAMACO
         private void load_content()
         {
             lvpq.Visible = true;
-            SplashScreenManager.ShowForm(this, typeof(Frm_wait), true, true, false);
+           // SplashScreenManager.ShowForm(this, typeof(Frm_wait), true, true, false);
                         
             if (Globals.transactioncode == "HDKD") load_form_HDKD(); // bao cao hoat dong kinh doanh
             else if (Globals.transactioncode == "CDKT") load_form_CDKT(); // bao cao Bảng cân đối kế toán
@@ -247,7 +204,7 @@ namespace HAMACO
             {
                 load_dynamic_form(); // load dynamic form
             }
-            SplashScreenManager.CloseForm(false);
+          // SplashScreenManager.CloseForm(false);
         }
 
         private void load_dynamic_form() // load form dong
@@ -267,16 +224,16 @@ namespace HAMACO
                 if (TableInput.Rows[i][1].ToString().Trim() == "StockCode")
                 {
                     groupBox1.Visible = true;
-                    if (ledv.Text == "[EditValue is null]") 
+                    if (ledv.EditValue == null) 
                         SQL += " ''" ;
-                    else SQL += " '" + ledv.Text + "'";
+                    else SQL += " '" + ledv.EditValue + "'";
                 }
                 if (TableInput.Rows[i][1].ToString().Trim() == "AccountNumber")
                 {
                     groupBox3.Visible = true;
-                    if (txtAccountNumber.Text == "[EditValue is null]")
+                    if (txtAccountNumber.EditValue == null)
                         SQL += " ''";
-                    else SQL += " '" + txtAccountNumber.Text + "'";
+                    else SQL += " '" + txtAccountNumber.EditValue.ToString() + "'";
                 }
                 if (TableInput.Rows[i][1].ToString().Trim() == "Year")
                 {
@@ -301,7 +258,7 @@ namespace HAMACO
             // datable output
             DataTable TableOutput = gen.GetTable("select * from Transactions_DynamicReport where TransactionCode='" + Globals.transactioncode + "' and IsInput=0 ORDER BY OrderNo");
             
-            txtSQL.Text += "select * from Transactions_DynamicReport where TransactionCode='" + Globals.transactioncode + "' and IsInput=0 ORDER BY OrderNo";
+            //txtSQL.Text += "select * from Transactions_DynamicReport where TransactionCode='" + Globals.transactioncode + "' and IsInput=0 ORDER BY OrderNo";
             try
             {
                 for (int i = 0; i < TableOutput.Rows.Count; i++)
@@ -383,7 +340,7 @@ namespace HAMACO
             DataTable dt = new DataTable();
             DataTable temp = new DataTable();
             Guid? StockId = Guid.Empty;
-            String sql = "select stockid from Stock where StockCode='" + ledv.Text + "'";
+            String sql = "select stockid from Stock where StockCode='" + ledv.EditValue + "'";
             SqlConnection conn = gen.GetConn();
             conn.Open();
             SqlCommand cmd = new SqlCommand(sql, conn);
@@ -2127,6 +2084,16 @@ namespace HAMACO
 
         }
 
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            p.export_Excel("Báo cáo",view);
+        }
+
+        private void btnActivate_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void view_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -2156,7 +2123,7 @@ namespace HAMACO
                 m.ShowDialog();
             }
             else if(Globals.transactioncode == "PTTM" || Globals.transactioncode == "PCTM" || Globals.transactioncode == "PCNH" || Globals.transactioncode == "PTNH"
-                || Globals.transactioncode == "PHKT")
+                || Globals.transactioncode == "PHKT") //specs: https://docs.google.com/document/d/1sYAv27WsAv9VDewNP5jDPd92Pydu1b0v3eR0JbmzuQo/edit
             {
                 Frm_FIDocument_New m = new Frm_FIDocument_New();
                 m.getactive("0"); // create phieu FI               
@@ -2211,11 +2178,7 @@ namespace HAMACO
             }
         }
 
-        private void txtAccountNumber_EditValueChanged(object sender, EventArgs e)
-        {
-            lblAccountName.Text = gen.GetString2("Account", "AccountName", "AccountNumber", txtAccountNumber.Text);
-        }
-
+     
         private void btnDisplay_Click(object sender, EventArgs e)
         {
             if (Globals.transactioncode == "DNDH")
@@ -2253,8 +2216,8 @@ namespace HAMACO
             {
                 Frm_BaoCao m = new Frm_BaoCao(); // chi tiet bao cao cong no cua 1 tk
                 m.gettransactioncode("BCCNCT");
-                m.getAccountNumber(txtAccountNumber.Text);
-                m.getStockCode(ledv.Text);
+                m.getAccountNumber(txtAccountNumber.EditValue.ToString());
+                m.getStockCode(ledv.EditValue.ToString());
                 m.getAccountingObjectCode(view.GetRowCellValue(view.FocusedRowHandle, gen.getFieldNameVN("BCCN", "AccountingObjectCode")).ToString());
                 m.getYear(txtYear.Text);
                 m.getMonth(txtMonth.Text);
@@ -2267,7 +2230,7 @@ namespace HAMACO
             if (Globals.transactioncode == "BCTK")
             {
                 Frm_BCTK_Copy m = new Frm_BCTK_Copy(); // copy so lieu ton kho
-                m.getStockCode(ledv.Text); // view thoi                
+                m.getStockCode(ledv.EditValue.ToString()); // view thoi                
                 m.ShowDialog();
             }
         }
@@ -2965,11 +2928,6 @@ namespace HAMACO
             
 
 
-        }
-
-        private void ledv_EditValueChanged(object sender, EventArgs e)
-        {
-            lblBranchName.Text = gen.GetString2("Stocks", "StockName", "StockCode", ledv.Text, clientid);
         }
     }
 }

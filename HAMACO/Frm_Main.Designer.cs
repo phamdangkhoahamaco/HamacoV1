@@ -57,6 +57,8 @@ namespace HAMACO
             this.thêmMớiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteFavMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeMenu)).BeginInit();
@@ -66,6 +68,7 @@ namespace HAMACO
             ((System.ComponentModel.ISupportInitialize)(this.txtSearh.Properties)).BeginInit();
             this.addFavMenu.SuspendLayout();
             this.deleteFavMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -120,9 +123,9 @@ namespace HAMACO
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 425);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 422);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(863, 22);
+            this.barDockControlBottom.Size = new System.Drawing.Size(863, 25);
             // 
             // barDockControlLeft
             // 
@@ -130,7 +133,7 @@ namespace HAMACO
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 425);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 422);
             // 
             // barDockControlRight
             // 
@@ -138,7 +141,7 @@ namespace HAMACO
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(863, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 425);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 422);
             // 
             // barMenu
             // 
@@ -202,7 +205,7 @@ namespace HAMACO
             this.treeMenu.ColumnPanelRowHeight = 35;
             this.treeMenu.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeMenu.Location = new System.Drawing.Point(0, 46);
+            this.treeMenu.Location = new System.Drawing.Point(0, 24);
             this.treeMenu.Margin = new System.Windows.Forms.Padding(0);
             this.treeMenu.Name = "treeMenu";
             this.treeMenu.OptionsBehavior.Editable = false;
@@ -214,7 +217,7 @@ namespace HAMACO
             this.treeMenu.OptionsView.ShowVertLines = false;
             this.treeMenu.OptionsView.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.Dark;
             this.treeMenu.RowHeight = 22;
-            this.treeMenu.Size = new System.Drawing.Size(263, 379);
+            this.treeMenu.Size = new System.Drawing.Size(263, 398);
             this.treeMenu.StateImageList = this.imageList1;
             this.treeMenu.TabIndex = 5;
             this.treeMenu.TreeLevelWidth = 22;
@@ -239,9 +242,9 @@ namespace HAMACO
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(263, 425);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(263, 422);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // panelControl1
@@ -251,17 +254,20 @@ namespace HAMACO
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(263, 46);
+            this.panelControl1.Size = new System.Drawing.Size(263, 24);
             this.panelControl1.TabIndex = 6;
             // 
             // txtSearh
             // 
-            this.txtSearh.Location = new System.Drawing.Point(5, 12);
+            this.txtSearh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearh.Location = new System.Drawing.Point(2, 2);
+            this.txtSearh.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
             this.txtSearh.MenuManager = this.barManager1;
             this.txtSearh.Name = "txtSearh";
-            this.txtSearh.Size = new System.Drawing.Size(253, 20);
+            this.txtSearh.Size = new System.Drawing.Size(259, 20);
             this.txtSearh.TabIndex = 0;
             this.txtSearh.EditValueChanged += new System.EventHandler(this.txtSearh_EditValueChanged);
+            this.txtSearh.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearh_KeyDown);
             // 
             // addFavMenu
             // 
@@ -297,11 +303,32 @@ namespace HAMACO
             this.toolStripMenuItem1.Text = "Xóa";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(263, 0);
+            this.splitter1.Margin = new System.Windows.Forms.Padding(0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(2, 422);
+            this.splitter1.TabIndex = 15;
+            this.splitter1.TabStop = false;
+            // 
+            // picLogo
+            // 
+            this.picLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.Location = new System.Drawing.Point(632, 365);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(204, 50);
+            this.picLogo.TabIndex = 16;
+            this.picLogo.TabStop = false;
+            // 
             // Frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 447);
+            this.Controls.Add(this.picLogo);
+            this.Controls.Add(this.splitter1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -321,6 +348,7 @@ namespace HAMACO
             ((System.ComponentModel.ISupportInitialize)(this.txtSearh.Properties)).EndInit();
             this.addFavMenu.ResumeLayout(false);
             this.deleteFavMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,5 +381,7 @@ namespace HAMACO
         private System.Windows.Forms.ToolStripMenuItem thêmMớiToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip deleteFavMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.Splitter splitter1;
+        public System.Windows.Forms.PictureBox picLogo;
     }
 }

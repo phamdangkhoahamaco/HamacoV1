@@ -650,7 +650,22 @@ namespace HAMACO
             bool _valid = false;
             if (FrmCha != null)
             {
-            
+                //if (!FrmCon.Text.Contains("ATT -"))
+                //foreach (Form _frm in FrmCha.MdiChildren)
+                //{
+                //    if (_frm.Text == FrmCon.Text)
+                //    {
+                //        _frm.Activate();
+                //        _frm.BringToFront();
+                //        if (_frm.WindowState == FormWindowState.Minimized)
+                //            _frm.WindowState = FormWindowState.Maximized;
+
+                //        _valid = true;
+                //        break;
+                //        return;
+                //    }
+
+                //}
             }
             if (!_valid)
             {

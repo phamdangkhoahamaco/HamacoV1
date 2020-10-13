@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using HAMACO.Resources; // import bo thu vien cua HAMACO
 using System.IO;
-using Z.Dapper.Plus;
+//using Z.Dapper.Plus;
 using System.Data.SqlClient;
 using System.Data.Entity.Infrastructure;
 //using EntityFramework.BulkInsert;

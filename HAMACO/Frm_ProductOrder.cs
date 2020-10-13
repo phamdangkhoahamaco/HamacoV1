@@ -12,6 +12,7 @@ using HAMACO.Resources; // import bo thu vien cua HAMACO
 using System.Data.Entity.Infrastructure;
 using System.Globalization;
 using System.Data.Entity.Validation;
+using static HAMACO.ClassApiEinvoice;
 
 namespace HAMACO
 {
@@ -26,7 +27,7 @@ namespace HAMACO
         private decimal amount = 0;
         private decimal vat = 0;
         private decimal price = 0;
-        string errors = "";
+        string errors = "";        
 
         public string getactive(string a)
         {
@@ -56,7 +57,7 @@ namespace HAMACO
         public Frm_ProductOrder()
         {
             InitializeComponent();
-        }
+        }      
 
         private void tsbtadd_Click(object sender, EventArgs e)
         {
@@ -991,7 +992,43 @@ namespace HAMACO
             m.ShowDialog();
         }
 
-        private void ViewDAT_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        private void btn_createInvoice_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn lập hóa đơn điện tử", "EInvoice", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                inv inv = new inv();
+                inv.sid = txtSohoadon.Text;
+                inv.type = "01GTKT";
+                inv.form = "01GTKT0/001"; // mau so
+                inv.bname = txtAccountingObjectName.Text;
+                inv.buyer = txtAccountingObjectName.Text;
+                inv.btax = txtCompanyTaxCode.Text;
+                inv.baddr = txtAccountingObjectAddress.Text;
+                //inv.btel = txtDienthoai.Text;
+                //inv.bmail = txtEmail.Text;
+                inv.paym = "TM/CK";
+                inv.curr = "VND";
+                inv.exrt = 1;
+                //inv.bacc = txtSTK.Text;
+                //inv.bbank = txtNganhang.Text;
+                /*inv.sumv = Convert.ToDouble(calcTongTruocVATVND.EditValue);
+                inv.sum = Convert.ToDouble(calcTongTruocVAT.EditValue);
+                inv.vatv = Convert.ToDouble(calcVATVND.EditValue);
+                inv.vat = Convert.ToDouble(calcVAT.EditValue);
+                //inv.word = txtBangchu.Text;
+                inv.totalv = Convert.ToDouble(calcTongSauVATVND.EditValue);
+                inv.total = Convert.ToDouble(calcTongSauVAT.EditValue);
+                inv.discount = Convert.ToDouble(calcChietkhau.EditValue);*/
+                inv.aun = 2;
+                inv.seq = "";
+
+            }
+
+
+        }
+
+            private void ViewDAT_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             //
         }

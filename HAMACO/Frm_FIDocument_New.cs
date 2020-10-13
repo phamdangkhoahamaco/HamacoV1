@@ -12,7 +12,7 @@ using HAMACO.Resources; // import bo thu vien cua HAMACO
 using System.Globalization;
 using System.Data.Entity.Validation;
 using DevExpress.XtraSplashScreen;
-
+//specs: https://docs.google.com/document/d/1sYAv27WsAv9VDewNP5jDPd92Pydu1b0v3eR0JbmzuQo/edit
 namespace HAMACO
 {
     public partial class Frm_FIDocument_New : DevExpress.XtraEditors.XtraForm

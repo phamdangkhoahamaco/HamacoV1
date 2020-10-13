@@ -37,7 +37,6 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.lblBranchName = new DevExpress.XtraEditors.LabelControl();
             this.ledv = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtSQL = new System.Windows.Forms.TextBox();
@@ -45,19 +44,19 @@
             this.lvpq = new DevExpress.XtraGrid.GridControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.labelaa = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAccountNumber = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnCopy = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDisplay = new DevExpress.XtraEditors.SimpleButton();
             this.btnActivate = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnContent = new DevExpress.XtraEditors.SimpleButton();
-            this.btnDisplay = new DevExpress.XtraEditors.SimpleButton();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.lblAccountName = new DevExpress.XtraEditors.LabelControl();
-            this.txtAccountNumber = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtYear.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMonth.Properties)).BeginInit();
@@ -78,16 +77,16 @@
             this.groupBox2.Controls.Add(this.txtYear);
             this.groupBox2.Controls.Add(this.txtMonth);
             this.groupBox2.Controls.Add(this.labelControl3);
-            this.groupBox2.Location = new System.Drawing.Point(50, 102);
+            this.groupBox2.ForeColor = System.Drawing.Color.Black;
+            this.groupBox2.Location = new System.Drawing.Point(693, 38);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(703, 46);
+            this.groupBox2.Size = new System.Drawing.Size(197, 31);
             this.groupBox2.TabIndex = 153;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Parameters";
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(6, 20);
+            this.labelControl4.Location = new System.Drawing.Point(6, 11);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(22, 13);
             this.labelControl4.TabIndex = 133;
@@ -96,7 +95,7 @@
             // txtYear
             // 
             this.txtYear.EditValue = "";
-            this.txtYear.Location = new System.Drawing.Point(56, 17);
+            this.txtYear.Location = new System.Drawing.Point(33, 8);
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(45, 20);
             this.txtYear.TabIndex = 134;
@@ -104,14 +103,14 @@
             // txtMonth
             // 
             this.txtMonth.EditValue = "";
-            this.txtMonth.Location = new System.Drawing.Point(173, 17);
+            this.txtMonth.Location = new System.Drawing.Point(136, 8);
             this.txtMonth.Name = "txtMonth";
             this.txtMonth.Size = new System.Drawing.Size(45, 20);
             this.txtMonth.TabIndex = 136;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(123, 20);
+            this.labelControl3.Location = new System.Drawing.Point(100, 11);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(30, 13);
             this.labelControl3.TabIndex = 135;
@@ -126,43 +125,33 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(56, 11);
+            this.labelControl6.Location = new System.Drawing.Point(4, 11);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(81, 13);
             this.labelControl6.TabIndex = 140;
             this.labelControl6.Text = "Chi nhánh/đơn vị";
             // 
-            // lblBranchName
-            // 
-            this.lblBranchName.LineStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            this.lblBranchName.Location = new System.Drawing.Point(302, 11);
-            this.lblBranchName.Name = "lblBranchName";
-            this.lblBranchName.Size = new System.Drawing.Size(60, 13);
-            this.lblBranchName.TabIndex = 142;
-            this.lblBranchName.Text = "BranchName";
-            // 
             // ledv
             // 
-            this.ledv.Location = new System.Drawing.Point(143, 8);
+            this.ledv.Location = new System.Drawing.Point(91, 8);
             this.ledv.Name = "ledv";
             this.ledv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ledv.Properties.NullText = "";
             this.ledv.Properties.PopupView = this.gridView3;
-            this.ledv.Size = new System.Drawing.Size(153, 20);
+            this.ledv.Size = new System.Drawing.Size(258, 20);
             this.ledv.TabIndex = 141;
-            this.ledv.EditValueChanged += new System.EventHandler(this.ledv_EditValueChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.labelControl6);
-            this.groupBox1.Controls.Add(this.lblBranchName);
             this.groupBox1.Controls.Add(this.ledv);
-            this.groupBox1.Location = new System.Drawing.Point(50, 64);
+            this.groupBox1.ForeColor = System.Drawing.Color.Black;
+            this.groupBox1.Location = new System.Drawing.Point(9, 38);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(703, 31);
+            this.groupBox1.Size = new System.Drawing.Size(366, 31);
             this.groupBox1.TabIndex = 152;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Customer";
             // 
             // txtSQL
             // 
@@ -174,9 +163,15 @@
             // 
             // view
             // 
+            this.view.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.view.Appearance.HeaderPanel.Options.UseFont = true;
+            this.view.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.view.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.view.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.view.GridControl = this.lvpq;
             this.view.Name = "view";
             this.view.OptionsMenu.EnableFooterMenu = false;
+            this.view.OptionsView.ShowAutoFilterRow = true;
             this.view.OptionsView.ShowFooter = true;
             this.view.OptionsView.ShowGroupPanel = false;
             this.view.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.view_RowCellStyle);
@@ -184,10 +179,11 @@
             // 
             // lvpq
             // 
-            this.lvpq.Location = new System.Drawing.Point(2, 151);
+            this.lvpq.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvpq.Location = new System.Drawing.Point(0, 80);
             this.lvpq.MainView = this.view;
             this.lvpq.Name = "lvpq";
-            this.lvpq.Size = new System.Drawing.Size(1750, 502);
+            this.lvpq.Size = new System.Drawing.Size(1376, 676);
             this.lvpq.TabIndex = 147;
             this.lvpq.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.view});
@@ -195,107 +191,147 @@
             // 
             // labelaa
             // 
-            this.labelaa.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.labelaa.Controls.Add(this.groupBox3);
+            this.labelaa.Controls.Add(this.btnExcel);
             this.labelaa.Controls.Add(this.btnCopy);
+            this.labelaa.Controls.Add(this.btnDisplay);
+            this.labelaa.Controls.Add(this.groupBox2);
             this.labelaa.Controls.Add(this.btnActivate);
+            this.labelaa.Controls.Add(this.groupBox1);
             this.labelaa.Controls.Add(this.btnDelete);
             this.labelaa.Controls.Add(this.btnContent);
-            this.labelaa.Controls.Add(this.btnDisplay);
             this.labelaa.Controls.Add(this.btnEdit);
             this.labelaa.Controls.Add(this.btnNew);
+            this.labelaa.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelaa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.labelaa.Location = new System.Drawing.Point(3, 12);
+            this.labelaa.Location = new System.Drawing.Point(0, 0);
             this.labelaa.Name = "labelaa";
-            this.labelaa.Size = new System.Drawing.Size(1750, 46);
+            this.labelaa.Size = new System.Drawing.Size(1376, 80);
             this.labelaa.TabIndex = 146;
             this.labelaa.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.labelControl1);
+            this.groupBox3.Controls.Add(this.txtAccountNumber);
+            this.groupBox3.ForeColor = System.Drawing.Color.Black;
+            this.groupBox3.Location = new System.Drawing.Point(381, 38);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(306, 31);
+            this.groupBox3.TabIndex = 153;
+            this.groupBox3.TabStop = false;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(6, 11);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(39, 13);
+            this.labelControl1.TabIndex = 140;
+            this.labelControl1.Text = "Account";
+            // 
+            // txtAccountNumber
+            // 
+            this.txtAccountNumber.Location = new System.Drawing.Point(93, 8);
+            this.txtAccountNumber.Name = "txtAccountNumber";
+            this.txtAccountNumber.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtAccountNumber.Properties.NullText = "";
+            this.txtAccountNumber.Properties.PopupView = this.gridView1;
+            this.txtAccountNumber.Size = new System.Drawing.Size(207, 20);
+            this.txtAccountNumber.TabIndex = 141;
+            // 
+            // gridView1
+            // 
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnExcel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExcel.ImageOptions.Image")));
+            this.btnExcel.Location = new System.Drawing.Point(582, 12);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(86, 20);
+            this.btnExcel.TabIndex = 58;
+            this.btnExcel.Text = "Xuất Excel";
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // btnCopy
             // 
-            this.btnCopy.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btnCopy.Appearance.Options.UseForeColor = true;
-            this.btnCopy.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.btnCopy.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.btnCopy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.ImageOptions.Image")));
-            this.btnCopy.Location = new System.Drawing.Point(224, 12);
+            this.btnCopy.Location = new System.Drawing.Point(502, 12);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(23, 20);
+            this.btnCopy.Size = new System.Drawing.Size(74, 20);
             this.btnCopy.TabIndex = 58;
+            this.btnCopy.Text = "Sao chép";
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
-            // 
-            // btnActivate
-            // 
-            this.btnActivate.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btnActivate.Appearance.Options.UseForeColor = true;
-            this.btnActivate.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.btnActivate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnActivate.ImageOptions.Image")));
-            this.btnActivate.Location = new System.Drawing.Point(195, 11);
-            this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(23, 20);
-            this.btnActivate.TabIndex = 57;
-            this.btnActivate.Text = "Content";
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Appearance.Options.UseForeColor = true;
-            this.btnDelete.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(157, 12);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(23, 20);
-            this.btnDelete.TabIndex = 56;
-            this.btnDelete.Text = "Content";
-            // 
-            // btnContent
-            // 
-            this.btnContent.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btnContent.Appearance.Options.UseForeColor = true;
-            this.btnContent.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.btnContent.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnContent.ImageOptions.Image")));
-            this.btnContent.Location = new System.Drawing.Point(113, 11);
-            this.btnContent.Name = "btnContent";
-            this.btnContent.Size = new System.Drawing.Size(23, 20);
-            this.btnContent.TabIndex = 55;
-            this.btnContent.Text = "Content";
-            this.btnContent.Click += new System.EventHandler(this.btnContent_Click);
             // 
             // btnDisplay
             // 
-            this.btnDisplay.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btnDisplay.Appearance.Options.UseForeColor = true;
-            this.btnDisplay.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.btnDisplay.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.btnDisplay.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDisplay.ImageOptions.Image")));
-            this.btnDisplay.Location = new System.Drawing.Point(72, 12);
+            this.btnDisplay.Location = new System.Drawing.Point(262, 11);
             this.btnDisplay.Name = "btnDisplay";
-            this.btnDisplay.Size = new System.Drawing.Size(23, 20);
+            this.btnDisplay.Size = new System.Drawing.Size(74, 20);
             this.btnDisplay.TabIndex = 2;
-            this.btnDisplay.Text = "Display";
+            this.btnDisplay.Text = "Chi tiết";
             this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
+            // 
+            // btnActivate
+            // 
+            this.btnActivate.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnActivate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnActivate.ImageOptions.Image")));
+            this.btnActivate.Location = new System.Drawing.Point(342, 11);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(74, 20);
+            this.btnActivate.TabIndex = 57;
+            this.btnActivate.Text = "Duyệt";
+            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(182, 11);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(74, 20);
+            this.btnDelete.TabIndex = 56;
+            this.btnDelete.Text = "Xóa";
+            // 
+            // btnContent
+            // 
+            this.btnContent.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnContent.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnContent.ImageOptions.Image")));
+            this.btnContent.Location = new System.Drawing.Point(422, 11);
+            this.btnContent.Name = "btnContent";
+            this.btnContent.Size = new System.Drawing.Size(74, 20);
+            this.btnContent.TabIndex = 55;
+            this.btnContent.Text = "Tải lại";
+            this.btnContent.Click += new System.EventHandler(this.btnContent_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Appearance.Options.UseForeColor = true;
-            this.btnEdit.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.btnEdit.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.btnEdit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.ImageOptions.Image")));
-            this.btnEdit.Location = new System.Drawing.Point(36, 12);
+            this.btnEdit.Location = new System.Drawing.Point(89, 11);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(23, 20);
+            this.btnEdit.Size = new System.Drawing.Size(87, 20);
             this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Text = "Chỉnh sửa";
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnNew
             // 
-            this.btnNew.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btnNew.Appearance.Options.UseForeColor = true;
-            this.btnNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.btnNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
             this.btnNew.Location = new System.Drawing.Point(9, 11);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(23, 20);
+            this.btnNew.Size = new System.Drawing.Size(74, 20);
             this.btnNew.TabIndex = 0;
-            this.btnNew.Text = "Create";
+            this.btnNew.Text = "Thêm mới";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // lblStatus
@@ -307,61 +343,11 @@
             this.lblStatus.TabIndex = 145;
             this.lblStatus.Text = "lblStatus";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.labelControl1);
-            this.groupBox3.Controls.Add(this.lblAccountName);
-            this.groupBox3.Controls.Add(this.txtAccountNumber);
-            this.groupBox3.Location = new System.Drawing.Point(770, 75);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(703, 31);
-            this.groupBox3.TabIndex = 153;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Account";
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(56, 11);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(39, 13);
-            this.labelControl1.TabIndex = 140;
-            this.labelControl1.Text = "Account";
-            // 
-            // lblAccountName
-            // 
-            this.lblAccountName.LineStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            this.lblAccountName.Location = new System.Drawing.Point(302, 11);
-            this.lblAccountName.Name = "lblAccountName";
-            this.lblAccountName.Size = new System.Drawing.Size(66, 13);
-            this.lblAccountName.TabIndex = 142;
-            this.lblAccountName.Text = "AccountName";
-            // 
-            // txtAccountNumber
-            // 
-            this.txtAccountNumber.Location = new System.Drawing.Point(143, 8);
-            this.txtAccountNumber.Name = "txtAccountNumber";
-            this.txtAccountNumber.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtAccountNumber.Properties.PopupView = this.gridView1;
-            this.txtAccountNumber.Size = new System.Drawing.Size(153, 20);
-            this.txtAccountNumber.TabIndex = 141;
-            this.txtAccountNumber.EditValueChanged += new System.EventHandler(this.txtAccountNumber_EditValueChanged);
-            // 
-            // gridView1
-            // 
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
             // Frm_BaoCao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1783, 773);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1376, 756);
             this.Controls.Add(this.txtSQL);
             this.Controls.Add(this.lvpq);
             this.Controls.Add(this.labelaa);
@@ -400,7 +386,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.LabelControl lblBranchName;
         private DevExpress.XtraEditors.SearchLookUpEdit ledv;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtSQL;
@@ -418,8 +403,8 @@
         private DevExpress.XtraEditors.SimpleButton btnCopy;
         private System.Windows.Forms.GroupBox groupBox3;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl lblAccountName;
         private DevExpress.XtraEditors.SearchLookUpEdit txtAccountNumber;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.SimpleButton btnExcel;
     }
 }

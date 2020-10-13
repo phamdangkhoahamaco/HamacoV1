@@ -133,6 +133,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnPTNH = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPTTM = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -176,8 +178,9 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnPTTM = new DevExpress.XtraEditors.SimpleButton();
-            this.btnPTNH = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_createInvoice = new DevExpress.XtraEditors.SimpleButton();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txtSohoadon = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rep_mahang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
@@ -767,6 +770,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtSohoadon);
+            this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Controls.Add(this.txtMaKH);
             this.groupBox2.Controls.Add(this.lblTenPhieu);
             this.groupBox2.Controls.Add(this.radioGroup2);
@@ -961,6 +966,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_createInvoice);
             this.groupBox1.Controls.Add(this.btnPrint);
             this.groupBox1.Controls.Add(this.txtUserName2);
             this.groupBox1.Controls.Add(this.label29);
@@ -1302,6 +1308,37 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "FI Doc";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnPTNH
+            // 
+            this.btnPTNH.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.btnPTNH.Appearance.BackColor2 = System.Drawing.Color.Transparent;
+            this.btnPTNH.Appearance.Options.UseBackColor = true;
+            this.btnPTNH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPTNH.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btnPTNH.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTNH.Location = new System.Drawing.Point(129, 669);
+            this.btnPTNH.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.btnPTNH.Name = "btnPTNH";
+            this.btnPTNH.Size = new System.Drawing.Size(117, 28);
+            this.btnPTNH.TabIndex = 18;
+            this.btnPTNH.Text = "Phiếu thu ngân hàng";
+            // 
+            // btnPTTM
+            // 
+            this.btnPTTM.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.btnPTTM.Appearance.BackColor2 = System.Drawing.Color.Transparent;
+            this.btnPTTM.Appearance.Options.UseBackColor = true;
+            this.btnPTTM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPTTM.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btnPTTM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPTTM.Location = new System.Drawing.Point(6, 669);
+            this.btnPTTM.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.btnPTTM.Name = "btnPTTM";
+            this.btnPTTM.Size = new System.Drawing.Size(117, 28);
+            this.btnPTTM.TabIndex = 17;
+            this.btnPTTM.Text = "Phiếu thu tiền mặt";
+            this.btnPTTM.Click += new System.EventHandler(this.btnPTTM_Click);
             // 
             // gridControl1
             // 
@@ -1735,36 +1772,38 @@
             this.gridView6.GridControl = this.gridControl_FIDoc;
             this.gridView6.Name = "gridView6";
             // 
-            // btnPTTM
+            // btn_createInvoice
             // 
-            this.btnPTTM.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.btnPTTM.Appearance.BackColor2 = System.Drawing.Color.Transparent;
-            this.btnPTTM.Appearance.Options.UseBackColor = true;
-            this.btnPTTM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPTTM.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.btnPTTM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPTTM.Location = new System.Drawing.Point(6, 669);
-            this.btnPTTM.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnPTTM.Name = "btnPTTM";
-            this.btnPTTM.Size = new System.Drawing.Size(117, 28);
-            this.btnPTTM.TabIndex = 17;
-            this.btnPTTM.Text = "Phiếu thu tiền mặt";
-            this.btnPTTM.Click += new System.EventHandler(this.btnPTTM_Click);
+            this.btn_createInvoice.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.btn_createInvoice.Appearance.BackColor2 = System.Drawing.Color.Transparent;
+            this.btn_createInvoice.Appearance.Options.UseBackColor = true;
+            this.btn_createInvoice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_createInvoice.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btn_createInvoice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_createInvoice.Location = new System.Drawing.Point(503, 148);
+            this.btn_createInvoice.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.btn_createInvoice.Name = "btn_createInvoice";
+            this.btn_createInvoice.Size = new System.Drawing.Size(117, 28);
+            this.btn_createInvoice.TabIndex = 35;
+            this.btn_createInvoice.Text = "Tạo HĐĐT ";
+            this.btn_createInvoice.Click += new System.EventHandler(this.btn_createInvoice_Click);
             // 
-            // btnPTNH
+            // label30
             // 
-            this.btnPTNH.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.btnPTNH.Appearance.BackColor2 = System.Drawing.Color.Transparent;
-            this.btnPTNH.Appearance.Options.UseBackColor = true;
-            this.btnPTNH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPTNH.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.btnPTNH.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPTNH.Location = new System.Drawing.Point(129, 669);
-            this.btnPTNH.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnPTNH.Name = "btnPTNH";
-            this.btnPTNH.Size = new System.Drawing.Size(117, 28);
-            this.btnPTNH.TabIndex = 18;
-            this.btnPTNH.Text = "Phiếu thu ngân hàng";
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(264, 127);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(36, 13);
+            this.label30.TabIndex = 35;
+            this.label30.Text = "So HD";
+            // 
+            // txtSohoadon
+            // 
+            this.txtSohoadon.Location = new System.Drawing.Point(307, 124);
+            this.txtSohoadon.Name = "txtSohoadon";
+            this.txtSohoadon.ReadOnly = true;
+            this.txtSohoadon.Size = new System.Drawing.Size(248, 21);
+            this.txtSohoadon.TabIndex = 36;
             // 
             // Frm_ProductOrder
             // 
@@ -1984,5 +2023,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraEditors.SimpleButton btnPTNH;
         private DevExpress.XtraEditors.SimpleButton btnPTTM;
+        private DevExpress.XtraEditors.SimpleButton btn_createInvoice;
+        private System.Windows.Forms.TextBox txtSohoadon;
+        private System.Windows.Forms.Label label30;
     }
 }

@@ -21,10 +21,14 @@ namespace HAMACO
     {
         gencon gen = new gencon();
         DataTable dtMenu = new DataTable();
+        DataTable dtTree = new DataTable();
         string contextMenuID = "";
         public Frm_Main()
         {
             InitializeComponent();
+            WindowsFormsSettings.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.False;
+
+
         }
 
 
@@ -42,14 +46,14 @@ namespace HAMACO
 
         void LoadDataTableMenu()
         {
-            dtMenu = p._SQLTraveDatatable("SELECT t.TransactionCode, t.RoleCode, t1.RoleName, formName, TransactionName, ParentFolder, IsParent, t2.TransactionCode as fav FROM Transactions t LEFT JOIN Roles t1 ON t.RoleCode = t1.RoleCode LEFT JOIN TransactionFav t2 ON t.TransactionCode = t2.TransactionCode  and t2.username = '" + Globals.username + "' WHERE t.rolecode IN ( SELECT RoleCode FROM UserJoinRole WHERE username = '" + Globals.username + "' ) ORDER BY SortNo ASC", gen.GetConn());
+            dtMenu = p._SQLTraveDatatable("SELECT t.TransactionCode, t.RoleCode, t1.RoleName, formName, TransactionName, ParentFolder, IsParent, t2.TransactionCode as fav FROM Transactions t LEFT JOIN Roles t1 ON t.RoleCode = t1.RoleCode LEFT JOIN TransactionFav t2 ON t.TransactionCode = t2.TransactionCode  and t2.username = '" + Globals.username + "' WHERE t.rolecode IN ( SELECT RoleCode FROM UserJoinRole WHERE username = '" + Globals.username + "' ) and t.IsDisplay = 1 ORDER BY SortNo ASC", gen.GetConn());
 
         }
 
         void loadTreeMenu()
         {
             treeMenu.ClearNodes();
-            DataTable dtTree = new DataTable();
+            dtTree = new DataTable();
             DataRow[] found;
             DataTable dtDistintParentFolder;
             DataView viewFolder;
@@ -58,7 +62,7 @@ namespace HAMACO
                 dtTree = dtMenu.Copy();
             else
             {
-                found = dtMenu.Select("TransactionName like '%" + txtSearh.Text + "%'");
+                found = dtMenu.Select("TransactionName like '%" + txtSearh.Text + "%' or TransactionCode  like '%" + txtSearh.Text + "%'");
                 if (found.Count() > 0)
                     dtTree = found.CopyToDataTable();
             }
@@ -83,14 +87,14 @@ namespace HAMACO
             TreeListNode parentForRootNodes = null;
 
             TreeListNode FavoriteNode = treeMenu.AppendNode(new object[] { "Fav", "Favorite" }, parentForRootNodes);
-            FavoriteNode.StateImageIndex = 1;
+            FavoriteNode.StateImageIndex = 0;
 
             foreach (DataRow rowSub in dtTree.Select("Fav is not null and Fav <> ''"))
             {
                 code = rowSub["formName"].ToString();
                 name = rowSub["TransactionCode"].ToString().Trim() + " - " + rowSub["TransactionName"];
                 TreeListNode subNode = treeMenu.AppendNode(new object[] { code, name }, FavoriteNode);
-                subNode.StateImageIndex = 3;
+                subNode.StateImageIndex = 1;
                 subNode.Tag = name;
             }
 
@@ -138,7 +142,7 @@ namespace HAMACO
             treeMenu.EndUnboundLoad();
             //expand
 
-            if (txtSearh.Text!= "")
+            if (txtSearh.Text != "")
                 treeMenu.ExpandAll();
             else
                 treeMenu.ExpandToLevel(0);
@@ -177,6 +181,7 @@ namespace HAMACO
                                 Globals.transactioncode = nameNode.Split('-')[0].ToString().Trim();
 
                             form.Text = nameNode;
+                            picLogo.Visible = false;
                             form.MdiParent = this;
                             form.Show();
                         }
@@ -191,7 +196,8 @@ namespace HAMACO
                 {
                     string idNode = info.Node.ParentNode.GetValue("ID").ToString();
                     string nameNode = info.Node.Tag.ToString();
-
+                  
+                 
                     if (nameNode.Contains('-'))
                         contextMenuID = nameNode.Split('-')[0].ToString().Trim();
 
@@ -201,7 +207,12 @@ namespace HAMACO
                     }
                     else
                     {
-                        addFavMenu.Show(new Point(e.X, e.Y + 80));
+                        DataRow[] found = dtTree.Select("transactioncode = '" + contextMenuID + "' and (Fav is not null or Fav <> '')");
+                        if (found.Count() == 0)
+                        {
+                            addFavMenu.Show(new Point(e.X, e.Y + 80));
+                        }
+                           
                     }
                 }
             }
@@ -214,7 +225,7 @@ namespace HAMACO
 
             LoadDataTableMenu();
             loadTreeMenu();
-           
+
         }
 
         private void thêmMớiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -227,11 +238,44 @@ namespace HAMACO
             catch (Exception)
             {
 
+
             }
-       
+
 
             LoadDataTableMenu();
             loadTreeMenu();
+        }
+
+        private void txtSearh_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter && dtTree.Rows.Count>0)
+            {
+                DataRow[] found = dtTree.Select("TransactionName like '%" + txtSearh.Text + "%' or TransactionCode  like '%" + txtSearh.Text + "%'");
+                if (found.Count() == 1)
+                {
+                    string idNode = found[0]["formName"].ToString();
+                    string nameNode = found[0]["TransactionCode"].ToString().Trim() + " - " + found[0]["TransactionName"];
+
+                    var type = Type.GetType("HAMACO." + idNode);
+                    if (type != null)
+                    {
+                        var form = Activator.CreateInstance(type) as Form;
+                        if (form != null)
+                        {
+                            if (nameNode.Contains('-'))
+                                Globals.transactioncode = nameNode.Split('-')[0].ToString().Trim();
+                            form.Text = nameNode;
+
+                            picLogo.Visible = false;
+                            form.MdiParent = this;
+                            form.Show();
+                        }
+                    }
+                    else
+                        MessageBox.Show("cannot open form");
+                }
+            }
         }
     }
 }
